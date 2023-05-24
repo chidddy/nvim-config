@@ -58,6 +58,7 @@ vim.opt.showmode = false
 vim.opt.showmatch = false -- highlight  matching [{()}]
 vim.opt.autowrite = true -- automatically :write before running commands
 vim.opt.scrolloff = 8 -- how many lines til window border to see when scrolling
+vim.opt.smoothscroll = true
 vim.opt.sidescroll = 2
 vim.opt.sidescrolloff = 15 -- same as above but for columns
 vim.opt.inccommand = 'nosplit' -- incremental search (enabled by default)

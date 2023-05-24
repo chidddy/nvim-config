@@ -15,28 +15,33 @@ local maps = {
     r = {
         name = '+refactor',
     },
-    G = {
-        name = '+git',
-        --TODO:git
-        o = {
-            function()
-                require('telescope.builtin').git_status()
-            end,
-            'open changed file',
-        },
-        b = {
-            function()
-                require('telescope.builtin').git_branches()
-            end,
-            'checkout branch',
-        },
-        c = {
-            function()
-                require('telescope.builtin').git_commits()
-            end,
-            'checkout commits',
-        },
-    },
+    -- p = {
+    --     name = '+git',
+    --TODO:git
+    -- o = {
+    --     function()
+    --         require('telescope.builtin').git_status()
+    --     end,
+    --     'open changed file',
+    -- },
+    -- b = {
+    --     function()
+    --         require('telescope.builtin').git_branches()
+    --     end,
+    --     'checkout branch',
+    -- },
+    -- c = {
+    --     function()
+    --         require('telescope.builtin').git_commits()
+    --     end,
+    --     'checkout commits',
+    -- },
+    -- c = {
+    --     function()
+    --         require('neogit').open({ 'commit' })
+    --     end,
+    -- },
+    -- },
     h = {
         name = '+help',
         t = {
@@ -482,6 +487,12 @@ local maps = {
             require('neogen').generate()
         end,
         'neogen',
+    },
+    G = {
+        function()
+            require('neogit').open()
+        end,
+        'git',
     },
 }
 

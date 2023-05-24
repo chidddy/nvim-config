@@ -18,8 +18,7 @@ local function config(name)
     return settings
 end
 
-for k = 1, #servers do
-    local server = servers[k]
+vim.iter(servers):each(function(server)
     if server == 'rust_analyzer' then
         require('rust-tools').setup(config(server).config)
         -- lsp[server].setup(config(server).config.server)
@@ -29,4 +28,4 @@ for k = 1, #servers do
     else
         lsp[server].setup(config(server).config)
     end
-end
+end)

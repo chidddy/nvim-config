@@ -7,5 +7,6 @@ return {
     require('chiddy.plugins.utils.navic'),
     require('chiddy.plugins.utils.hydra'),
     require('chiddy.plugins.utils.telescope'),
+    require('chiddy.plugins.utils.templates'),
     require('chiddy.plugins.utils.projects'),
 }

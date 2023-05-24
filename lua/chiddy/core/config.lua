@@ -57,6 +57,17 @@ local M = {
         'dashboard',
         'Dashboard',
     },
+    quick_exit_ft = {
+        'qf',
+        'help',
+        'man',
+        'notify',
+        'lspinfo',
+        'startuptime',
+        'tsplayground',
+        'OverseerList',
+        'noice',
+    },
 }
 
 return M

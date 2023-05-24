@@ -23,7 +23,7 @@ function M.config()
     modes.define = function()
         local base = '#0f0f0f'
 
-        for _, mode in ipairs({ 'Copy', 'Delete', 'Insert', 'Visual' }) do
+        vim.iter({ 'Copy', 'Delete', 'Insert', 'Visual' }):each(function(mode)
             local def = { bg = ucolor.blend(cfg.colors[mode:lower()], base, cfg.line_opacity), default = true }
             local norm = { fg = cfg.colors[mode:lower()], default = true }
             vim.api.nvim_set_hl(0, ('Modes%s'):format(mode), { bg = norm.fg, default = true })
@@ -31,12 +31,17 @@ function M.config()
             vim.api.nvim_set_hl(0, ('Modes%sCursorLineNr'):format(mode), norm)
             vim.api.nvim_set_hl(0, ('Modes%sCursorLineSign'):format(mode), norm)
             vim.api.nvim_set_hl(0, ('Modes%sCursorLineFold'):format(mode), norm)
-            -- utils.hi(('Modes%s'):format(mode), { bg = norm.fg }, true)
-            -- utils.hi(('Modes%sCursorLine'):format(mode), def, true)
-            --     utils.hi(('Modes%sCursorLineNr'):format(mode), norm, true)
-            --     utils.hi(('Modes%sCursorLineSign'):format(mode), norm, true)
-            --     utils.hi(('Modes%sCursorLineFold'):format(mode), norm, true)
-        end
+        end)
+
+        -- for _, mode in ipairs({ 'Copy', 'Delete', 'Insert', 'Visual' }) do
+        --     local def = { bg = ucolor.blend(cfg.colors[mode:lower()], base, cfg.line_opacity), default = true }
+        --     local norm = { fg = cfg.colors[mode:lower()], default = true }
+        --     vim.api.nvim_set_hl(0, ('Modes%s'):format(mode), { bg = norm.fg, default = true })
+        --     vim.api.nvim_set_hl(0, ('Modes%sCursorLine'):format(mode), def)
+        --     vim.api.nvim_set_hl(0, ('Modes%sCursorLineNr'):format(mode), norm)
+        --     vim.api.nvim_set_hl(0, ('Modes%sCursorLineSign'):format(mode), norm)
+        --     vim.api.nvim_set_hl(0, ('Modes%sCursorLineFold'):format(mode), norm)
+        -- end
 
         vim.api.nvim_set_hl(0, 'ModesInsertModeMsg', { fg = cfg.colors.insert, default = true })
         vim.api.nvim_set_hl(0, 'ModesVisualModeMsg', { fg = cfg.colors.visual, default = true })

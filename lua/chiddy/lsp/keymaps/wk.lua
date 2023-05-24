@@ -48,6 +48,12 @@ return function(client, buffer)
                 cond = cap.renameProvider,
                 expr = true,
             },
+            s = {
+                function()
+                    require('ssr').open()
+                end,
+                'structural rename',
+            },
         },
         g = {
             name = '+goto',

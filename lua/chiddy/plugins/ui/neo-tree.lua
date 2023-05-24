@@ -25,7 +25,8 @@ function M.config()
         enable_refresh_on_write = true,
         sort_case_insensitive = true,
         use_default_mappings = false,
-        use_popups_for_input = false,
+        popup_border_style = 'rounded',
+        use_popups_for_input = true,
         hide_root_node = false,
         default_component_configs = {
             container = {

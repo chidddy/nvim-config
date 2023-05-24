@@ -1,13 +1,13 @@
 ---@class LazyPlugin
-local M = {
+local plugin = {
     '{{_variable_}}',
 }
 
-function M.config()
+function plugin.config()
     require('{{_variable_}}').setup({
         -- config
         {{_cursor_}}
     })
 end
 
-return M
+return plugin

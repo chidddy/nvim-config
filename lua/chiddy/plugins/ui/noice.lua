@@ -7,6 +7,11 @@ function M.config()
     require('noice').setup({
         cmdline = {
             view = 'cmdline',
+            format = {
+                IncRename = {
+                    view = 'cmdline_popup',
+                },
+            },
         },
         messages = {
             enabled = true,
@@ -24,21 +29,6 @@ function M.config()
                 ['cmp.entry.get_documentation'] = true,
             },
         },
-        -- routes = {
-        -- {
-        --     view = 'split',
-        --     filter = {
-        --         kind = 'msg_show',
-        --         find = 'map',
-        --     },
-        -- },
-        -- },
-        -- redirect = {
-        --     view = 'notify',
-        --     filter = {
-        --         kind = 'msg_show',
-        --     },
-        -- },
         presets = {
             inc_rename = true,
             bottom_search = false,
@@ -47,7 +37,6 @@ function M.config()
             command_palette = false,
         },
     })
-    -- require('telescope').load_extension('noice')
 end
 
 return M
