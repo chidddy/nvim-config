@@ -6,7 +6,3 @@ globals:
     any: true
   vim:
     any: true
-  printt:
-    any: true
-  dump:
-    any: true
