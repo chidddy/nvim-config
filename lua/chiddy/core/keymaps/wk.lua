@@ -7,41 +7,9 @@ local maps = {
     c = {
         name = '+code/lsp',
     },
-    b = {
-        name = '+buffer',
-        b = { '<cmd>:e #<cr>', 'switch to other buffer' },
-        --TODO:BufferLineCycle
-    },
     r = {
         name = '+refactor',
     },
-    -- p = {
-    --     name = '+git',
-    --TODO:git
-    -- o = {
-    --     function()
-    --         require('telescope.builtin').git_status()
-    --     end,
-    --     'open changed file',
-    -- },
-    -- b = {
-    --     function()
-    --         require('telescope.builtin').git_branches()
-    --     end,
-    --     'checkout branch',
-    -- },
-    -- c = {
-    --     function()
-    --         require('telescope.builtin').git_commits()
-    --     end,
-    --     'checkout commits',
-    -- },
-    -- c = {
-    --     function()
-    --         require('neogit').open({ 'commit' })
-    --     end,
-    -- },
-    -- },
     h = {
         name = '+help',
         t = {
@@ -349,52 +317,44 @@ local maps = {
     },
     R = {
         name = '+run/compile',
-        --TODO:run/compile
+        o = {
+            function()
+                require('overseer').toggle()
+            end,
+            'overseer',
+        },
     },
     T = {
         name = '+tests',
-        --TODO:tests
-        o = {
-            name = '+overseer',
-            o = {
-                function()
-                    require('overseer').toggle()
-                end,
-                'toggle',
-            },
-            t = {
-                name = '+test',
-                t = {
-                    function()
-                        require('neotest').overseer.run()
-                    end,
-                    'test',
-                },
-                T = {
-                    function()
-                        require('neotest').overseer.run(vim.fn.expand('%'))
-                    end,
-                    'test cur file',
-                },
-                d = {
-                    function()
-                        require('neotest').overseer.run({ strategy = 'dap' })
-                    end,
-                    'dap',
-                },
-                s = {
-                    function()
-                        require('neotest').overseer.stop()
-                    end,
-                    'stop',
-                },
-                a = {
-                    function()
-                        require('neotest').overseer.attach()
-                    end,
-                    'attach',
-                },
-            },
+        t = {
+            function()
+                require('neotest').overseer.run()
+            end,
+            'test',
+        },
+        T = {
+            function()
+                require('neotest').overseer.run(vim.fn.expand('%'))
+            end,
+            'test cur file',
+        },
+        d = {
+            function()
+                require('neotest').overseer.run({ strategy = 'dap' })
+            end,
+            'dap',
+        },
+        s = {
+            function()
+                require('neotest').overseer.stop()
+            end,
+            'stop',
+        },
+        a = {
+            function()
+                require('neotest').overseer.attach()
+            end,
+            'attach',
         },
     },
     D = {
@@ -481,13 +441,6 @@ local maps = {
         --TODO:notes/org
     },
     -- lone keys
-    --TODO:lone keys
-    C = {
-        function()
-            require('neogen').generate()
-        end,
-        'neogen',
-    },
     G = {
         function()
             require('neogit').open()

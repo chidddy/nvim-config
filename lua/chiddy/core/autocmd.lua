@@ -25,7 +25,6 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.bo[event.buf].buflisted = false
         vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
     end,
-    -- TODO: outsource to chiddy.core.config
     pattern = require('chiddy.core.config').quick_exit_ft,
 })
 -- Disable statusline in dashboard

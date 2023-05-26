@@ -44,7 +44,6 @@ require('lazy').setup('chiddy.plugins', {
         size = { width = 0.8, height = 0.8 },
         -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
         border = 'rounded',
-        -- TODO: migrate to chiddy.utils.icons
         icons = {
             cmd = ' ',
             config = '',

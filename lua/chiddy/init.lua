@@ -1,5 +1,4 @@
 -- TODO: cull plugins and find replacements for some
---       - git
 --       - projects
 --       - runners
 --       - tests
@@ -8,6 +7,7 @@
 -- TODO: finish LSP and DAP
 -- TODO: FIX NEODEV/NEOCONF
 -- TODO: finish chiddy.themes
+--       - make colors use a generic palette interface to be color theme agnostic
 --       - restructure alpha and heirline configs
 --       - restructure statusline components
 require('chiddy.core')

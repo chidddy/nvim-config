@@ -22,7 +22,6 @@ function opt.usrcmd(name, func, opts)
     vim.api.nvim_create_user_command(name, func, opts or {})
 end
 
--- TODO: update to not use vim.cmd
 function opt.cabbrev(input, replace)
     local cmd = 'cnoreabbrev %s %s'
     vim.cmd(cmd:format(input, replace))

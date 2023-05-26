@@ -3,7 +3,6 @@ return function(client, buffer)
     local maps = {
         c = {
             name = '+code/lsp',
-            --TODO:language specific bindings with cond
             a = { vim.lsp.buf.code_action, 'code action' },
             f = {
                 { ':Format<cr>', 'format', cond = cap.documentFormating },
