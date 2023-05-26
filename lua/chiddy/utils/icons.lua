@@ -1,4 +1,4 @@
-local data = {
+local icons = {
     kind = {
         -- Class = " ",
         -- Constructor = "",
@@ -230,25 +230,19 @@ local data = {
     },
 }
 
-local function create()
-    local icons = vim.deepcopy(data)
-    for k, _ in pairs(icons) do
-        setmetatable(icons[k], {
-            __index = function(self, key)
-                -- dump(self)
-                if string.sub(key, -1) == '_' then
-                    return self[string.sub(key, 1, -2)] .. ' '
-                end
-                -- print('"' .. (self._concat or 'X') .. '"')
-                return self[key] .. (self._concat or '')
-            end,
-            __call = function(self, v)
-                self._concat = v
-                return self
-            end,
-        })
-    end
-    return icons
+for k, _ in pairs(icons) do
+    setmetatable(icons[k], {
+        __index = function(self, key)
+            if string.sub(key, -1) == '_' then
+                return self[string.sub(key, 1, -2)] .. ' '
+            end
+            return self[key] .. (self._concat or '')
+        end,
+        __call = function(self, v)
+            self._concat = v
+            return self
+        end,
+    })
 end
 
-return create()
+return icons
