@@ -1,36 +1,3 @@
---[[
-
-base colors:
-red
-green
-blue
-yellow
-orange
-purple
-cyan
-gray
-
-other colors:
-fg
-bg
-insert-mode
-visual-mode
-normal-mode
-replate-mode
-commandline-mode
-
-git colors
-
-diagnostic colors
-
---]]
-
---TODO: usage:
--- color_provider.red == colors.red
--- color_provider.red.light == colors.light.red
--- color_provider.red = '' will set colors.red
--- color_provider.red.light = '' will set colors.light.red
-
 local colors = {
     red = '',
     blue = '',

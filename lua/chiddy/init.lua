@@ -3,11 +3,9 @@
 --       - runners
 --       - tests
 --       - todo-comments
--- TODO: better organize plugin categories (split editor into sub categories)
 -- TODO: finish LSP and DAP
 -- TODO: FIX NEODEV/NEOCONF
--- TODO: finish chiddy.themes
---       - make colors use a generic palette interface to be color theme agnostic
---       - restructure alpha and heirline configs
---       - restructure statusline components
+-- TODO: finish chiddy.ui
+--       - restructure alpha and heirline components
+--       - try out nougat
 require('chiddy.core')
