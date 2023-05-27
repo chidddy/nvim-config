@@ -3,8 +3,7 @@
 --       - runners
 --       - tests
 --       - todo-comments
--- TODO: finish LSP and DAP
--- TODO: FIX NEODEV/NEOCONF
+-- TODO: finish DAP
 -- TODO: finish chiddy.ui
 --       - restructure alpha and heirline components
 --       - try out nougat

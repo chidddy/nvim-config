@@ -30,11 +30,17 @@ local maps = {
             end,
             'help pages',
         },
-        m = {
+        M = {
             function()
                 require('telescope.builtin').man_tags()
             end,
             'man pages',
+        },
+        m = {
+            function()
+                require('noice').cmd('messages')
+            end,
+            'messages',
         },
         k = {
             function()
@@ -209,10 +215,7 @@ local maps = {
         },
     },
     o = {
-        name = '+open',
-    },
-    t = {
-        name = '+toggle',
+        name = '+options',
         f = {
             function()
                 require('chiddy.core.config').lsp.format_on_save = not require('chiddy.core.config').lsp.format_on_save
@@ -248,73 +251,6 @@ local maps = {
         f = { '<cmd>tabfirst<cr>', 'first' },
         l = { '<cmd>tablast<cr>', 'last' },
     },
-    q = {
-        name = '+quit/session',
-        q = { '<cmd>qa<cr>', 'quit' },
-        ['!'] = { '<cmd>qa!<cr>', 'force quit' },
-    },
-    x = {
-        name = '+errors',
-        x = {
-            function()
-                require('trouble').toggle()
-            end,
-            'trouble',
-        },
-        t = {
-            function()
-                require('trouble').toggle({ mode = 'todo' })
-            end,
-            'trouble todo',
-        },
-        T = {
-            function()
-                require('telescope').extensions['todo-comments'].todo()
-            end,
-            'todo',
-        },
-        l = { '<cmd>lopen<cr>', 'open location list' },
-        q = { '<cmd>copen<cr>', 'open quickfix list' },
-    },
-    n = {
-        name = '+noice',
-        h = {
-            function()
-                require('noice').cmd('history')
-            end,
-            'history',
-        },
-        l = {
-            function()
-                require('noice').cmd('last')
-            end,
-            'last',
-        },
-        e = {
-            function()
-                require('noice').cmd('errors')
-            end,
-            'errors',
-        },
-        t = {
-            function()
-                require('noice').cmd('telescope')
-            end,
-            'telescope',
-        },
-        s = {
-            function()
-                require('noice').cmd('stats')
-            end,
-            'stats',
-        },
-        m = {
-            function()
-                require('noice').cmd('messages')
-            end,
-            'messages',
-        },
-    },
     R = {
         name = '+run/compile',
         o = {
@@ -324,8 +260,9 @@ local maps = {
             'overseer',
         },
     },
-    T = {
+    t = {
         name = '+tests',
+        -- TODO: tests
         t = {
             function()
                 require('neotest').overseer.run()
@@ -357,7 +294,7 @@ local maps = {
             'attach',
         },
     },
-    D = {
+    d = {
         name = '+debug',
         --TODO:debug
         b = {
@@ -423,7 +360,7 @@ local maps = {
             end,
             'last',
         },
-        u = {
+        d = {
             function()
                 require('dapui').toggle({})
             end,
@@ -436,7 +373,7 @@ local maps = {
             'exit',
         },
     },
-    O = {
+    n = {
         name = '+notes/org',
         --TODO:notes/org
     },

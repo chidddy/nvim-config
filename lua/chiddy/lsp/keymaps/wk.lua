@@ -8,7 +8,8 @@ return function(client, buffer)
                 { ':Format<cr>', 'format', cond = cap.documentFormating },
                 { ':Format<cr>', 'format', cond = cap.documentRangeFormating, mode = 'x' },
             },
-            d = { vim.diagnostic.open_float, 'line diagnostics' },
+            d = { vim.diagnostic.goto_next, 'line diagnostics' },
+            D = { vim.diagnostic.goto_prev, 'line diagnostics' },
             l = {
                 name = '+lsp server',
                 i = { '<cmd>LspInfo<cr>', 'info' },
@@ -26,15 +27,6 @@ return function(client, buffer)
                     end,
                     'mason',
                 },
-            },
-        },
-        x = {
-            name = '+errors',
-            d = {
-                function()
-                    require('telescope.builtin').diagnostics()
-                end,
-                'search diagnostics',
             },
         },
         r = {
@@ -92,12 +84,6 @@ return function(client, buffer)
                 end,
                 'type defs',
             },
-        },
-        d = {
-            name = '+diagnostics',
-            n = { vim.diagnostic.goto_next, 'goto next' },
-            N = { vim.diagnostic.goto_prev, 'goto prev' },
-            d = { vim.diagnostic.open_float, 'open current' },
         },
         j = {
             name = '+treesitter',
@@ -172,6 +158,10 @@ return function(client, buffer)
             vim.lsp.buf_signature_help,
             'signature help',
             mode = { 'n', 'i' },
+        },
+        D = {
+            vim.diagnostic.open_float,
+            'open diagnostics',
         },
         K = {
             function()

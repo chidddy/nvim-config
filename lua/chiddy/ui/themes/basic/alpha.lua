@@ -169,13 +169,12 @@ local buttons = {
 }
 
 local function footer_text()
-    local total_plugins = 0
-    total_plugins = require('lazy').stats().count
+    local stats = require('lazy').stats()
     local datetime = os.date('%H:%M:%S %d-%m-%Y')
     local plugins_text = ' '
         .. icons.misc.Plug
         .. ' '
-        .. total_plugins
+        .. stats.count
         .. ' plugins '
         .. icons.misc.VIM
         .. ' v'
@@ -188,6 +187,11 @@ local function footer_text()
         .. icons.ui.Clock
         .. ' '
         .. datetime
+        .. ' '
+        .. icons.ui.Clock
+        .. ' '
+        .. stats.times.LazyDone
+        .. 'ms'
     return plugins_text
 end
 
