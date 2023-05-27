@@ -5,9 +5,7 @@ local M = {
 }
 
 function M.config()
-    require('alpha').start(true, require('chiddy.themes.' .. require('chiddy.core.config').theme .. '.alpha').config)
-    -- require('alpha').setup(require('themes.' .. require('core.config').theme .. '.alpha').config)
-    -- require('alpha').start(true)
+    require('alpha').start(true, require('chiddy.ui.themes.' .. require('chiddy.core.config').theme .. '.alpha').config)
 end
 
 return M

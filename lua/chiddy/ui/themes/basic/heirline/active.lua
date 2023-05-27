@@ -1,4 +1,4 @@
-local comp = require('chiddy.themes.status.components')
+local comp = require('chiddy.ui.components.heirline')
 local conditions = require('heirline.conditions')
 local utils = require('heirline.utils')
 local sutils = require('chiddy.utils.status')

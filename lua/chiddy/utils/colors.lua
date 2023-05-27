@@ -113,16 +113,7 @@ function M.assert_brightness(color)
     return false -- dull
 end
 
-function M.vary_color(palettes, default)
-    local flvr = require('catppuccin').flavour
-
-    if palettes[flvr] ~= nil then
-        return palettes[flvr]
-    end
-    return default
-end
-
-local function rgb2Hex(rgb)
+function M.rgb2hex(rgb)
     local hexadecimal = '#'
 
     for _, value in pairs(rgb) do
@@ -180,7 +171,15 @@ function M.increase_saturation(hex, percentage)
         new_intensities[i] = math.floor(v * 255)
     end
     table.sort(new_intensities)
-    return (rgb2Hex({ new_intensities.max, new_intensities.min, new_intensities.mid }))
+    return (M.rgb2hex({ new_intensities.max, new_intensities.min, new_intensities.mid }))
+end
+
+function M.get_hl_fg(name)
+    return string.format('#%x', vim.api.nvim_get_hl(0, { name = name, link = false }).fg)
+end
+
+function M.get_hl_bg(name)
+    return string.format('#%x', vim.api.nvim_get_hl(0, { name = name, link = false }).bg)
 end
 
 return M

@@ -9,13 +9,9 @@ vim.api.nvim_create_autocmd('User', {
     pattern = 'VeryLazy',
     callback = function()
         local cutils = require('chiddy.utils.colors')
-        local colors = require('catppuccin.palettes.mocha')
-        local color = cutils.darken(colors.blue, 0.7)
-        vim.g.cursor_rgb = color
+        local colors = require('chiddy.ui.colors')
+        local color = cutils.darken(colors.get().blue, 0.7)
         vim.api.nvim_set_hl(0, 'murmur_cursor_rgb', { bg = color })
-        vim.api.nvim_set_hl(0, 'IlluminatedWordText', { bg = color })
-        vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = color })
-        vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = color })
         vim.api.nvim_set_hl(0, 'TreeSitterContext', { fg = '#cdd6f4' })
     end,
 })

@@ -5,9 +5,7 @@ local M = {
 }
 
 function M.config()
-    local cutils = require('chiddy.utils.colors')
-    local colors = require('catppuccin.palettes.mocha')
-    local color = cutils.darken(colors.blue, 0.7)
+    local color = require('chiddy.utils.colors').darken(require('chiddy.ui.colors').get().blue, 0.7)
     require('murmur').setup({
         cursor_rgb = {
             guibg = color,

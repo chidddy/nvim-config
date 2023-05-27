@@ -5,7 +5,6 @@
 local plenary_path = require('plenary.path')
 local dashboard = require('alpha.themes.dashboard')
 local icons = require('chiddy.utils.icons')
-local cdir = vim.fn.getcwd()
 local if_nil = vim.F.if_nil
 
 local nvim_web_devicons = {

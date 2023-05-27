@@ -97,6 +97,44 @@ function M.config()
         end,
     })
     vim.cmd([[colorscheme catppuccin]])
+    -- require('chiddy.ui.colors')
+end
+
+function M.colors()
+    local clrs = require('catppuccin.palettes').get_palette('mocha')
+    return {
+        red = clrs.red,
+        blue = clrs.blue,
+        green = clrs.green,
+        yellow = clrs.yellow,
+        orange = clrs.peach,
+        purple = clrs.mauve,
+        cyan = clrs.sky,
+        teal = clrs.teal,
+        gray = clrs.overlay0,
+        bg = clrs.base,
+        bg_dark = clrs.crust,
+        text = clrs.text,
+        text_dark = clrs.surface0,
+        modes = {
+            normal = clrs.blue,
+            insert = clrs.green,
+            visual = clrs.mauve,
+            delete = clrs.red,
+            copy = clrs.blue,
+        },
+        git = {
+            added = clrs.green,
+            changed = clrs.yellow,
+            removed = clrs.red,
+        },
+        diag = {
+            error = clrs.red,
+            warn = clrs.yellow,
+            info = clrs.sky,
+            hint = clrs.teal,
+        },
+    }
 end
 
 return M

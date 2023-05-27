@@ -15,10 +15,10 @@ local statuslines = {
         end
     end,
     fallthrough = false,
-    require('chiddy.themes.basic.status.special'),
-    require('chiddy.themes.basic.status.terminal'),
-    require('chiddy.themes.basic.status.inactive'),
-    require('chiddy.themes.basic.status.active'),
+    require('chiddy.ui.themes.basic.heirline.special'),
+    require('chiddy.ui.themes.basic.heirline.terminal'),
+    require('chiddy.ui.themes.basic.heirline.inactive'),
+    require('chiddy.ui.themes.basic.heirline.active'),
 }
 
 local M = {}

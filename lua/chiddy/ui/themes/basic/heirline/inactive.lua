@@ -1,5 +1,5 @@
 local conditions = require('heirline.conditions')
-local comp = require('chiddy.themes.status.components')
+local comp = require('chiddy.ui.components.heirline')
 
 local statusline = {
     condition = conditions.is_not_active,

@@ -5,14 +5,14 @@ local M = {
 }
 function M.config()
     local modes = require('modes')
-    local color = require('catppuccin.palettes.mocha')
+    local color = require('chiddy.ui.colors').get()
     local ucolor = require('chiddy.utils.colors')
     local cfg = {
         colors = {
-            insert = color.green,
-            visual = color.mauve,
-            delete = color.red,
-            copy = color.blue,
+            insert = color.modes.insert,
+            visual = color.modes.visual,
+            delete = color.modes.delete,
+            copy = color.modes.copy,
         },
         line_opacity = 0.6,
         set_cursor = true,
