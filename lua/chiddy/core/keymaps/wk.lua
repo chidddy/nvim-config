@@ -296,7 +296,6 @@ local maps = {
     },
     d = {
         name = '+debug',
-        --TODO:debug
         b = {
             name = '+breakpoint',
             p = {
