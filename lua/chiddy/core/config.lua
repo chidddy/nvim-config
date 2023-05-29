@@ -50,6 +50,13 @@ local M = {
         },
         format_on_save = true,
     },
+    dap = {
+        adapters = {
+            'cppdbg',
+            'codelldb',
+        },
+        configs = {},
+    },
     dashboard_hide_cursor = true,
     dashboard_ft = {
         'alpha',

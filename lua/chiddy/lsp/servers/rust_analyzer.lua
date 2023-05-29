@@ -1,26 +1,9 @@
 -- rust
 local M = {}
--- M.config = {
---     flags = U.default_flags,
---     capabilities = U.capabilities(),
---     on_attach = U.default_on_attach,
---     settings = {
---         ['rust-analyzer'] = {
---             cargo = {
---                 allFeatures = true,
---             },
---             checkOnSave = {
---                 allFeatures = true,
---                 command = 'clippy',
---             },
---         },
---     },
--- }
-
-local extension_path = vim.env.HOME .. '/.vscode-oss/extensions/vadimcn.vscode-lldb.1.9.0/'
+local extension_path = require('chiddy.utils.dap').mason.package .. '/codelldb/extension/'
 local codelldb_path = extension_path .. 'adapter/codelldb'
 local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
-
+--
 M.config = {
     tools = {
         inlay_hints = {

@@ -6,7 +6,13 @@ local lspactive = {
     condition = conditions.lsp_attached,
     update = { 'LspAttach', 'LspDetach' },
     provider = function()
-        return icons.ui.Gear .. ' ' .. require('chiddy.utils.api').get_active_lsp_client_names()[1]
+        local name = ''
+        vim.iter(require('chiddy.utils.api').get_active_lsp_client_names()):each(function(lsp)
+            if lsp ~= 'null-ls' then
+                name = lsp
+            end
+        end)
+        return icons.ui.Gear .. ' ' .. name
     end,
     hl = { fg = 'blue', bold = true },
 }
