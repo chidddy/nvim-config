@@ -96,7 +96,9 @@ function M.config()
             }
         end,
     })
-    vim.cmd([[colorscheme catppuccin]])
+    -- vim.cmd([[colorscheme catppuccin]])
+    require('catppuccin').load()
+    vim.api.nvim_exec_autocmds('Colorscheme', {})
     -- require('chiddy.ui.colors')
 end
 

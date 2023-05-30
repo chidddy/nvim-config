@@ -1,8 +1,9 @@
 ---@class LazyPlugin
 local M = {
     'folke/noice.nvim',
+    event = 'VeryLazy',
 }
-M.event = 'VeryLazy'
+
 function M.config()
     require('noice').setup({
         cmdline = {
@@ -35,6 +36,13 @@ function M.config()
             long_message_to_split = true,
             lsp_doc_border = true,
             command_palette = false,
+        },
+        routes = {
+            -- TODO: what the fuck, make this work, try dressing
+            {
+                filter = { kind = 'overseer_template' },
+                view = 'popup',
+            },
         },
     })
 end

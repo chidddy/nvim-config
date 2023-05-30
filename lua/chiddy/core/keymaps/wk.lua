@@ -253,11 +253,17 @@ local maps = {
     },
     R = {
         name = '+run/compile',
+        r = {
+            function()
+                require('overseer').run_template()
+            end,
+            'run',
+        },
         o = {
             function()
                 require('overseer').toggle()
             end,
-            'overseer',
+            'toggle',
         },
     },
     t = {
@@ -265,31 +271,31 @@ local maps = {
         -- TODO: tests
         t = {
             function()
-                require('neotest').overseer.run()
+                require('neotest').summary.toggle()
             end,
-            'test',
+            'summary',
         },
-        T = {
+        r = {
             function()
-                require('neotest').overseer.run(vim.fn.expand('%'))
+                require('neotest').run.run()
             end,
-            'test cur file',
+            'run test',
         },
         d = {
             function()
-                require('neotest').overseer.run({ strategy = 'dap' })
+                require('neotest').run.run({ strategy = 'dap' })
             end,
             'dap',
         },
         s = {
             function()
-                require('neotest').overseer.stop()
+                require('neotest').run.stop()
             end,
             'stop',
         },
         a = {
             function()
-                require('neotest').overseer.attach()
+                require('neotest').run.attach()
             end,
             'attach',
         },
