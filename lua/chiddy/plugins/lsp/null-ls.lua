@@ -16,6 +16,9 @@ function M.config()
         sources = {
             -- diagnostics
             dgn.eslint_d.with({
+                condition = function(utils)
+                    return utils.root_has_file_matches('eslint')
+                end,
                 filter = function(diagnostic)
                     return diagnostic.code ~= 'prettier/prettier'
                 end,
