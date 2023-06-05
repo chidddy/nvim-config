@@ -4,6 +4,7 @@ return {
     { 'MunifTanjim/nui.nvim' },
     require('chiddy.plugins.ui.icons'),
     require('chiddy.plugins.ui.notif'),
+    require('chiddy.plugins.ui.dressing'),
     require('chiddy.plugins.ui.alpha'),
     require('chiddy.plugins.ui.heirline'),
     require('chiddy.plugins.ui.noice'),

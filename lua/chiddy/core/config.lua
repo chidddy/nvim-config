@@ -44,6 +44,7 @@ local M = {
                 'typst_lsp',
                 'yamlls',
                 'lemminx',
+                'html',
                 'jsonls',
                 'taplo',
             },

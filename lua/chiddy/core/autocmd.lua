@@ -78,15 +78,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
-vim.api.nvim_create_autocmd({ 'CursorHold' }, {
-    pattern = '*',
-    callback = function()
-        if vim.w.diag_shown then
-            return
-        end
-        if vim.w.cursor_word ~= '' then
-            vim.diagnostic.open_float()
-            vim.w.diag_shown = true
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd({ 'CursorHold' }, {
+--     pattern = '*',
+--     callback = function()
+--         if vim.w.diag_shown then
+--             return
+--         end
+--         if vim.w.cursor_word ~= '' then
+--             vim.diagnostic.open_float()
+--             vim.w.diag_shown = true
+--         end
+--     end,
+-- })
