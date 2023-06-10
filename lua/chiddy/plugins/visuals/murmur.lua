@@ -5,11 +5,7 @@ local M = {
 }
 
 function M.config()
-    local color = require('chiddy.utils.colors').darken(require('chiddy.ui.colors').get().blue, 0.7)
     require('murmur').setup({
-        cursor_rgb = {
-            guibg = color,
-        },
         yank_blink = {
             enabled = false,
             on_yank = nil,

@@ -9,9 +9,14 @@ vim.api.nvim_create_autocmd('User', {
     pattern = 'VeryLazy',
     callback = function()
         local cutils = require('chiddy.utils.colors')
-        local colors = require('chiddy.ui.colors')
-        local color = cutils.darken(colors.get().blue, 0.7)
-        vim.api.nvim_set_hl(0, 'murmur_cursor_rgb', { bg = color })
+        local colors = require('chiddy.ui.colors').get()
+        vim.api.nvim_set_hl(0, 'murmur_cursor_rgb', {
+            bg = cutils.modify(colors.main, { l = 52, c = 8.3 }),
+        })
+        vim.api.nvim_set_hl(0, 'LspInlayHint', {
+            bold = true,
+            fg = cutils.modify(colors.main, { l = 86, c = 6.5 }),
+        })
         vim.api.nvim_set_hl(0, 'TreeSitterContext', { fg = '#cdd6f4' })
     end,
 })
@@ -62,15 +67,15 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.keymap.set('n', '<backspace>', '<c-o>', { buffer = true })
     end,
 })
-vim.api.nvim_create_autocmd('BufWritePost', {
-    callback = function()
-        if require('chiddy.core.config').lsp.format_on_save == true then
-            vim.cmd('FormatWrite')
-            -- works just dont want to keep in case they change calling convention
-            -- require('formatter.format').format('', nil, 1, -1, { write = true })
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--     callback = function()
+--         if require('chiddy.core.config').lsp.format_on_save == true then
+--             vim.cmd('FormatWrite')
+--             -- works just dont want to keep in case they change calling convention
+--             -- require('formatter.format').format('', nil, 1, -1, { write = true })
+--         end
+--     end,
+-- })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()

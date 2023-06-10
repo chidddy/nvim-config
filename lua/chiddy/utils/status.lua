@@ -1,5 +1,6 @@
 local colors = require('chiddy.ui.colors').get()
-local ucolors = require('chiddy.utils.colors')
+local cutils = require('chiddy.utils.colors')
+local funcs = cutils.funcs
 
 local utils = {}
 
@@ -159,9 +160,9 @@ end
 function utils.create_colors()
     return {
         base = colors.bg_dark,
-        first = ucolors.brighten(colors.bg, 0.14),
-        second = ucolors.brighten(colors.bg, 0.07),
-        third = ucolors.brighten(colors.bg, 0.01),
+        first = cutils.modify(colors.bg, { l = funcs.add(11), c = funcs.add(1.7) }),
+        second = cutils.modify(colors.bg, { l = funcs.add(5.3), c = funcs.add(0.8), h = funcs.add(2) }),
+        third = cutils.modify(colors.bg, { l = funcs.add(1), c = funcs.minus(0.2), h = funcs.add(0.2) }),
         text = colors.text,
         text_dark = colors.text_dark,
         none = 'NONE',

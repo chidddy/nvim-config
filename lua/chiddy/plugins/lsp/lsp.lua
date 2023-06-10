@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'neovim/nvim-lspconfig',
-    event = 'BufReadPre',
+    event = 'VeryLazy',
     dependencies = {
         'b0o/SchemaStore.nvim',
         'p00f/clangd_extensions.nvim',

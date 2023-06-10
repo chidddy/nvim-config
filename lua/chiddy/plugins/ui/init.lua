@@ -9,6 +9,7 @@ return {
     require('chiddy.plugins.ui.heirline'),
     require('chiddy.plugins.ui.noice'),
     require('chiddy.plugins.ui.neo-tree'),
+    require('chiddy.plugins.ui.nvim-tree'),
     require('chiddy.plugins.ui.lspkind'),
     require('chiddy.plugins.ui.trouble'),
     require('chiddy.plugins.ui.statuscol'),

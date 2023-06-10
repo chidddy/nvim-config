@@ -1,16 +1,15 @@
 ---@class LazyPlugin
 local M = {
     'catppuccin/nvim',
-    lazy = true,
-    enabled = true,
     event = 'VeryLazy',
-    priority = 10000,
     name = 'catppuccin',
 }
 
 function M.config()
-    local ucolors = require('chiddy.utils.colors')
     local clrs = require('catppuccin.palettes').get_palette('mocha')
+    local cutils = require('chiddy.utils.colors')
+    local funcs = cutils.funcs
+
     require('catppuccin').setup({
         flavour = 'mocha',
         transparent_background = true,
@@ -18,8 +17,15 @@ function M.config()
         compile_path = vim.fn.stdpath('cache') .. '/catppuccin',
         color_overrides = {
             all = {
-                surface2 = ucolors.darken(clrs.surface2, 0.4),
-                overlay2 = ucolors.lighten(clrs.overlay2, 0.6),
+                surface2 = cutils.modify(clrs.surface2, { l = funcs.minus(23.6), c = funcs.div(2) }),
+                -- surface2 = cutils.chroma(
+                --     cutils.lightness(clrs.surface2, cutils.funcs.minus(23.6), cutils.funcs.div(2))
+                -- ),
+                -- overlay2 = cutils.chroma(
+                --     cutils.lightness(clrs.overlay2, cutils.funcs.add(15)),
+                --     cutils.funcs.minus(1.6)
+                -- ),
+                overlay2 = cutils.modify(clrs.overlay2, { l = funcs.add(15), c = funcs.minus(1.6) }),
             },
         },
         dim_inactive = {
@@ -27,10 +33,6 @@ function M.config()
             shade = 'dark',
             percentage = 0.15,
         },
-        -- styles = {
-        --     comments = { 'italic' },
-        --     conditionals = { 'italic' },
-        -- },
         integrations = {
             alpha = true,
             cmp = true,
@@ -54,20 +56,23 @@ function M.config()
                     warnings = { 'italic' },
                     information = { 'italic' },
                 },
-                -- underlines = {
-                --     errors = { 'underline' },
-                --     hints = { 'underline' },
-                --     warnings = { 'underline' },
-                --     information = { 'underline' },
-                -- },
+                underlines = {
+                    errors = { 'underline' },
+                    hints = { 'underline' },
+                    warnings = { 'underline' },
+                    information = { 'underline' },
+                },
             },
             navic = {
                 enabled = true,
                 custom_bg = clrs.crust,
             },
+            neogit = true,
             neotree = true,
             noice = true,
             notify = true,
+            nvimtree = true,
+            overseer = true,
             semantic_tokens = true,
             treesitter = true,
             treesitter_context = true,
@@ -75,31 +80,28 @@ function M.config()
             ts_rainbow2 = true,
             which_key = true,
         },
-        custom_highlights = function(colors)
-            -- vim.api.nvim_set_hl(0, 'Comment', )
-            local overlay0 = ucolors.darken(colors.overlay0, 0.3)
-            return {
-                CursorLine = { bg = 'NONE' },
-                -- CursorLineNr = { fg = colors.lavender },
-                NormalSB = { bg = 'NONE' },
-                LineNr = { fg = overlay0 },
-                TreesitterContextLineNumber = { fg = overlay0 },
-                Comment = { fg = overlay0 },
-                MatchParen = { bg = 'NONE' },
-                DiagnosticVirtualTextError = { bg = 'NONE' },
-                DiagnosticVirtualTextWarn = { bg = 'NONE' },
-                DiagnosticVirtualTextInfo = { bg = 'NONE' },
-                DiagnosticVirtualTextHint = { bg = 'NONE' },
-                Pmenu = { fg = colors.mauve },
-                -- ['@punctuation.delimiter'] = { fg = ucolors.lighten(colors.overlay2, 0.6) },
-                -- LspInlayHint = { bg = colors.none },
-            }
-        end,
+        highlight_overrides = {
+            mocha = function(colors)
+                local overlay0 =
+                    cutils.modify(colors.overlay0, { l = funcs.minus(32.7), c = funcs.minus(2.4), h = funcs.minus(7) })
+                return {
+                    CursorLine = { bg = 'NONE' },
+                    NormalSB = { bg = 'NONE' },
+                    LineNr = { fg = overlay0 },
+                    TreesitterContextLineNumber = { fg = overlay0 },
+                    Comment = { fg = overlay0 },
+                    MatchParen = { bg = 'NONE' },
+                    DiagnosticVirtualTextError = { bg = 'NONE' },
+                    DiagnosticVirtualTextWarn = { bg = 'NONE' },
+                    DiagnosticVirtualTextInfo = { bg = 'NONE' },
+                    DiagnosticVirtualTextHint = { bg = 'NONE' },
+                    Pmenu = { fg = colors.mauve },
+                }
+            end,
+        },
     })
-    -- vim.cmd([[colorscheme catppuccin]])
     require('catppuccin').load()
     vim.api.nvim_exec_autocmds('Colorscheme', {})
-    -- require('chiddy.ui.colors')
 end
 
 function M.colors()
@@ -136,6 +138,8 @@ function M.colors()
             info = clrs.sky,
             hint = clrs.teal,
         },
+        main = clrs.blue,
+        secondary = clrs.sky,
     }
 end
 

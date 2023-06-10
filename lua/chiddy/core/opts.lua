@@ -139,7 +139,7 @@ opt.sessionoptions = {
     'tabpages',
     'winsize',
 }
-opt.splitkeep = 'screen'
+-- opt.splitkeep = 'screen'
 
 opt.wildignore = {
     '*.aux',

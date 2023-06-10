@@ -37,13 +37,6 @@ function M.config()
             lsp_doc_border = true,
             command_palette = false,
         },
-        routes = {
-            -- TODO: what the fuck, make this work, try dressing
-            {
-                filter = { kind = 'overseer_template' },
-                view = 'popup',
-            },
-        },
     })
 end
 

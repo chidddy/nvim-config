@@ -12,6 +12,40 @@ local M = {
     },
 }
 
+local function setup_highlights()
+    local text = require('chiddy.ui.colors').get().text_dark
+    local cutils = require('chiddy.utils.colors')
+    local function hl(name)
+        vim.api.nvim_set_hl(0, name, { fg = text, bg = cutils.get_hl_fg(name) })
+    end
+
+    hl('CmpItemKindField')
+    hl('CmpItemKindProperty')
+    hl('CmpItemKindEvent')
+    hl('CmpItemKindText')
+    hl('CmpItemKindEnum')
+    hl('CmpItemKindKeyword')
+    hl('CmpItemKindConstant')
+    hl('CmpItemKindConstructor')
+    hl('CmpItemKindReference')
+    hl('CmpItemKindFunction')
+    hl('CmpItemKindStruct')
+    hl('CmpItemKindClass')
+    hl('CmpItemKindModule')
+    hl('CmpItemKindOperator')
+    hl('CmpItemKindVariable')
+    hl('CmpItemKindFile')
+    hl('CmpItemKindUnit')
+    hl('CmpItemKindSnippet')
+    hl('CmpItemKindFolder')
+    hl('CmpItemKindMethod')
+    hl('CmpItemKindValue')
+    hl('CmpItemKindEnumMember')
+    hl('CmpItemKindInterface')
+    hl('CmpItemKindColor')
+    hl('CmpItemKindTypeParameter')
+end
+
 function M.config()
     local lspkind = require('lspkind')
     local luasnip = require('luasnip')
@@ -22,6 +56,7 @@ function M.config()
         type = require('chiddy.utils.icons').type(' '),
         cmp = require('chiddy.utils.icons').cmp(' '),
     }
+    setup_highlights()
     -- utils
     local ignore_text = function(entry, ctx)
         return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
@@ -50,8 +85,11 @@ function M.config()
         preselect = cmp.PreselectMode.None,
         window = {
             completion = {
-                border = 'rounded',
-                scrollbar = '║',
+                winhighlight = 'Normal:PMenu,FloatBorder:PMenu,Search:None',
+                col_offset = -3,
+                side_padding = 0,
+                -- border = 'rounded',
+                -- scrollbar = '║',
             },
             documentation = {
                 border = 'rounded',
@@ -126,10 +164,8 @@ function M.config()
         -- installed sources
         sources = {
             { name = 'nvim_lsp', entry_filter = ignore_text },
-            -- { name = 'nvim_lsp' },
             -- { name = 'nvim_lua' },
             { name = 'luasnip' },
-            -- { name = 'luasnip' },
             { name = 'luasnip_choice' },
             -- { name = 'path', max_item_countt = 5 },
             -- { name = 'neorg' },
@@ -156,7 +192,7 @@ function M.config()
             select = true,
         },
         experimental = {
-            ghost_text = true,
+            ghost_text = false,
         },
         performance = {
             fetching_timeout = 300,

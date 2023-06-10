@@ -50,7 +50,9 @@ local maps = {
         },
         H = {
             function()
-                require('telescope.builtin').highlights()
+                require('telescope.builtin').highlights({
+                    temp__scrolling_limit = 5000,
+                })
             end,
             'highlights',
         },
@@ -394,13 +396,14 @@ local maps = {
 local keys = {
     ['<C-f>'] = {
         function()
-            require('neo-tree.command').execute({
-                action = 'focus',
-                toggle = true,
-                reveal = true,
-                source = 'filesystem',
-                position = 'left',
-            })
+            -- require('neo-tree.command').execute({
+            --     action = 'focus',
+            --     toggle = true,
+            --     reveal = true,
+            --     source = 'filesystem',
+            --     position = 'left',
+            -- })
+            require('nvim-tree.api').tree.toggle({ focus = true })
         end,
         'toggle filetree',
     },

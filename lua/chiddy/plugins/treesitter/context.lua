@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'nvim-treesitter/nvim-treesitter-context',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 }
 
 function M.config()

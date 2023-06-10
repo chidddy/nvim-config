@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'mfussenegger/nvim-dap',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
     dependencies = {
         'nvim-telescope/telescope-dap.nvim',
     },

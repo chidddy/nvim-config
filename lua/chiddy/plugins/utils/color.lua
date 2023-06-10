@@ -1,19 +1,10 @@
 ---@class LazyPlugin
-local M = {
-    'uga-rosa/ccc.nvim',
-    event = 'BufReadPost',
+local plugin = {
+    'echasnovski/mini.colors',
 }
 
-function M.config()
-    local icons = require('chiddy.utils.icons')
-    require('ccc').setup({
-        default_color = '#000000',
-        bar_char = icons.sep.Block,
-        point_char = icons.ui.Indicator,
-        highlighter = {
-            auto_enable = true,
-        },
-    })
+function plugin.config()
+    require('mini.colors').setup({})
 end
 
-return M
+return plugin
