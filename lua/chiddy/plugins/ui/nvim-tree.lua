@@ -2,6 +2,7 @@
 local plugin = {
     'nvim-tree/nvim-tree.lua',
     event = 'VeryLazy',
+    enabled = false,
 }
 
 local function keybinds(bufnr)

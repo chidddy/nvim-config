@@ -4,7 +4,7 @@ local M = {
     cmd = 'NeoTree',
     branch = 'main',
     event = 'VeryLazy',
-    enabled = false,
+    enabled = true,
 }
 
 function M.config()
