@@ -1,6 +1,8 @@
 local U = {}
 local M = require('chiddy.utils.math')
 
+--NOTE: like half this is taken from colors.mini
+
 -- Cusps for Oklch color space. These represent (c, l) points of Oklch space
 -- (with **not corrected lightness**) inside a hue leaf (points with
 -- `math.floor(h) = <index>`) with the highest value of chroma (`c`).
