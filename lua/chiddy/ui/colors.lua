@@ -48,6 +48,7 @@ function color_provider.get()
 end
 
 function color_provider.clone()
+    check_load()
     return vim.deepcopy(colors)
 end
 

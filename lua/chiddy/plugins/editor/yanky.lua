@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'gbprod/yanky.nvim',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
     dependencies = { { 'kkharji/sqlite.lua' } },
 }
 

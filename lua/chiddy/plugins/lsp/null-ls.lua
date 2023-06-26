@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'jose-elias-alvarez/null-ls.nvim',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

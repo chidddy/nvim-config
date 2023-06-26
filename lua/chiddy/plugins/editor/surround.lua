@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'kylechui/nvim-surround',
-    event = 'InsertEnter',
+    event = 'VeryLazy',
 }
 
 function M.config()

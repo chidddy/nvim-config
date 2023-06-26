@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'echasnovski/mini.move',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 }
 
 function M.config()

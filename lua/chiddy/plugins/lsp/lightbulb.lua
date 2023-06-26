@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'kosayoda/nvim-lightbulb',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 }
 
 function M.config()

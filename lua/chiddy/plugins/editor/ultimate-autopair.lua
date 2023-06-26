@@ -2,6 +2,7 @@
 local M = {
     'altermo/ultimate-autopair.nvim',
     event = { 'InsertEnter', 'CmdLineEnter' },
+    enabled = false,
 }
 
 function M.config()

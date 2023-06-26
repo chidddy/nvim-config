@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'm-demare/hlargs.nvim',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 }
 
 function M.config()

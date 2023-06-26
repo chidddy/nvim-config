@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'nyngwang/murmur.lua',
-    event = 'BufReadPre',
+    event = 'VeryLazy',
 }
 
 function M.config()

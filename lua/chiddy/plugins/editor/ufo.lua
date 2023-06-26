@@ -2,7 +2,7 @@
 local M = {
     'kevinhwang91/nvim-ufo',
     dependencies = { { 'kevinhwang91/promise-async' } },
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 }
 
 function M.config()

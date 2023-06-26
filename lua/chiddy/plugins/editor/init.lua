@@ -1,7 +1,9 @@
 return {
+    require('chiddy.plugins.editor.autopair'),
     require('chiddy.plugins.editor.comment'),
     require('chiddy.plugins.editor.dial'),
     require('chiddy.plugins.editor.minimove'),
+    require('chiddy.plugins.editor.neogen'),
     require('chiddy.plugins.editor.rename'),
     require('chiddy.plugins.editor.ssr'),
     require('chiddy.plugins.editor.surround'),

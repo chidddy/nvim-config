@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'utilyre/sentiment.nvim',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 }
 
 function M.config()

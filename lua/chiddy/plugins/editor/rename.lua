@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'smjonas/inc-rename.nvim',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
     cmd = 'IncRename',
 }
 

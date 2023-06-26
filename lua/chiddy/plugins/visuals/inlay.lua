@@ -2,6 +2,7 @@
 local M = {
     'lvimuser/lsp-inlayhints.nvim',
     branch = 'anticonceal',
+    enabled = false,
 }
 
 function M.config()

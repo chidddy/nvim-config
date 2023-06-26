@@ -1,3 +1,4 @@
+local cfg = require('chiddy.core.config').lsp
 local U = {}
 
 function U.capabilities()
@@ -20,15 +21,17 @@ U.default_flags = {
     debounce_text_changes = 150,
 }
 
+---@param client lsp.Client lsp client
+---@param buf integer bufnr
 function U.default_on_attach(client, buf)
-    if
-        require('chiddy.core.config').lsp._loaded == false
-        or (require('chiddy.core.config').lsp._loaded == true and client.name ~= 'null-ls')
-    then
-        require('chiddy.core.config').lsp._loaded = true
-        require('lsp-inlayhints').on_attach(client, buf)
+    if cfg._loaded == false or (cfg._loaded == true and client.name ~= 'null-ls') then
+        cfg._loaded = true
         require('chiddy.lsp.keymaps')(client, buf)
-        if client.server_capabilities.documentSymbolProvider then
+        if client.supports_method('textDocument/inlayHint', '') then
+            -- require('lsp-inlayhints').on_attach(client, buf)
+            vim.lsp.buf.inlay_hint(buf, true)
+        end
+        if client.supports_method('textDocument/documentSymbol', '') then
             require('nvim-navic').attach(client, buf)
         end
     end

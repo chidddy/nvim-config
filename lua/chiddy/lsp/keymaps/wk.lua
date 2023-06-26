@@ -4,12 +4,14 @@ return function(client, buffer)
         c = {
             name = '+code/lsp',
             a = { vim.lsp.buf.code_action, 'code action' },
-            f = {
-                { ':Format<cr>', 'format', cond = cap.documentFormating },
-                { ':Format<cr>', 'format', cond = cap.documentRangeFormating, mode = 'x' },
-            },
+            C = { require('neogen').generate, 'neogen annotation' },
             d = { vim.diagnostic.goto_next, 'line diagnostics' },
             D = { vim.diagnostic.goto_prev, 'line diagnostics' },
+            f = {
+                vim.lsp.buf.format,
+                'format',
+                cond = cap.documentFormating,
+            },
             l = {
                 name = '+lsp server',
                 i = { '<cmd>LspInfo<cr>', 'info' },

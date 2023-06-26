@@ -27,7 +27,7 @@ function M.config()
             picker.css_lch,
             picker.css_oklab,
             picker.css_oklch,
-            picker.custom_entries(require('chiddy.ui.colors').clone_flat()),
+            -- picker.custom_entries(require('chiddy.ui.colors').clone_flat()),
             picker.ansi_escape(),
         },
         inputs = {

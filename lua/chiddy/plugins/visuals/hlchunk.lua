@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'shellRaining/hlchunk.nvim',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 }
 
 function M.config()
