@@ -119,9 +119,10 @@ function M.config()
                 elseif luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
                 elseif utils.has_words_before() then
-                    cmp.complete()
-                else
+                    -- cmp.complete()
                     fallback()
+                else
+                    vim.cmd(':>')
                 end
             end, { 'i', 's' }),
             ['<S-Tab>'] = cmp.mapping(function(fallback)

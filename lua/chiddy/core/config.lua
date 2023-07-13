@@ -50,7 +50,6 @@ local M = {
             },
         },
         format_on_save = true,
-        _loaded = false,
     },
     dap = {
         adapters = {

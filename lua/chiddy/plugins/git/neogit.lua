@@ -1,6 +1,6 @@
 ---@class LazyPlugin
 local M = {
-    'TimUntersberger/neogit',
+    'NeogitOrg/neogit',
 }
 
 function M.config()

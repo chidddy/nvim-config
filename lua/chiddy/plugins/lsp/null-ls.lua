@@ -49,7 +49,6 @@ function M.config()
                 diagnostics_format = '[eslint_d] #{m}\n(#{c})',
             }),
             dgn.alex,
-            dgn.shellcheck,
             dgn.luacheck,
             dgn.selene,
             dgn.markdownlint,
@@ -64,7 +63,6 @@ function M.config()
 
             -- code actions
             cda.eslint_d,
-            cda.shellcheck,
             cda.refactoring,
 
             -- formatting

@@ -214,7 +214,9 @@ function M.config()
                     'thumbs.db',
                 },
             },
-            follow_current_file = true,
+            follow_current_file = {
+                enabled = true,
+            },
             group_empty_dirs = true,
             hijack_netrw_behavior = 'open_current',
             use_libuv_file_watcher = false,
@@ -236,7 +238,9 @@ function M.config()
         },
         buffers = {
             bind_to_cwd = true,
-            follow_current_file = true,
+            follow_current_file = {
+                enabled = true,
+            },
             group_empty_dirs = true,
             show_unloaded = true,
             window = {
