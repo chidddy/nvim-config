@@ -1,4 +1,6 @@
 local icons = require('chiddy.utils.icons')
+
+---@type StatusLine
 local dap = {
     condition = function()
         local session = require('dap').session()

@@ -18,7 +18,6 @@ function M.config()
             'git_status',
         },
         close_if_last_window = false,
-        close_floats_on_escape_key = true,
         default_source = 'filesystem',
         enable_git_status = true,
         enable_diagnostics = true,
@@ -139,7 +138,7 @@ function M.config()
                 },
                 ['<2-LeftMouse>'] = 'open',
                 ['<cr>'] = 'open',
-                ['<esc>'] = 'revert_preview',
+                ['<esc>'] = 'cancel',
                 ['P'] = { 'toggle_preview', config = { use_float = true } },
                 ['S'] = 'open_split',
                 -- ["S"] = "split_with_window_picker",
@@ -179,19 +178,27 @@ function M.config()
             {
                 event = 'file_opened',
                 handler = function()
-                    require('neo-tree').close_all()
+                    require('neo-tree.sources.manager').close_all()
+                end,
+            },
+            {
+                event = 'neo_tree_window_before_close',
+                handler = function()
+                    if require('neo-tree.sources.common.preview').is_active() then
+                        local state = require('neo-tree.sources.manager').get_state('filesystem')
+                        state.commands.toggle_preview(state)
+                    end
                 end,
             },
             {
                 event = 'after_render',
-                handler = function()
+                handler = function(state)
                     if
-                        (vim.bo.filetype == 'neo-tree' or vim.bo.filetype == 'neo-tree-popup')
+                        vim.bo.filetype == 'neo-tree-popup'
                         or vim.api.nvim_buf_get_var(0, 'neo_tree_position') == 'current'
                     then
                         return
                     end
-                    local state = require('neo-tree.sources.manager').get_state('filesystem')
                     if not require('neo-tree.sources.common.preview').is_active() then
                         state.config = { use_float = false }
                         state.commands.toggle_preview(state)

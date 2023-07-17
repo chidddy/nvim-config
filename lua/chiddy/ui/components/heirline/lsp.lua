@@ -2,6 +2,8 @@ local conditions = require('heirline.conditions')
 local icons = require('chiddy.utils.icons')
 -- local utils = require('heirline.utils')
 local Navic = require('nvim-navic')
+
+---@type StatusLine
 local lspactive = {
     condition = conditions.lsp_attached,
     update = { 'LspAttach', 'LspDetach' },
@@ -17,6 +19,7 @@ local lspactive = {
     hl = { fg = 'blue', bold = true },
 }
 
+---@type StatusLine
 local navic = {
     condition = function()
         Navic.is_available()
@@ -27,6 +30,7 @@ local navic = {
     update = 'CursorMoved',
 }
 
+---@type StatusLine
 local diag = {
     condition = conditions.has_diagnostics,
     static = {

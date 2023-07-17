@@ -1,6 +1,7 @@
 -- local conditions = require('heirline.conditions')
 local icons = require('chiddy.utils.icons')
 
+---@type StatusLine
 local termname = {
     provider = function()
         local tname, _ = vim.api.nvim_buf_get_name(0):gsub('.*:', '')
@@ -9,6 +10,7 @@ local termname = {
     hl = { fg = 'blue', bold = true },
 }
 
+---@type StatusLine
 local helpname = {
     condition = function()
         return vim.bo.filetype == 'help'
@@ -20,12 +22,14 @@ local helpname = {
     hl = { fg = 'blue' },
 }
 
+---@type StatusLine
 local indent = {
     provider = function()
         return vim.opt.tabstop:get()
     end,
 }
 
+---@type StatusLine
 local showcmd = {
     condition = function()
         return require('noice').api.status.command.has()

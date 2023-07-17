@@ -74,7 +74,7 @@ local left_extras = {
 
 local mid_segment = {
     fallthrough = false,
-    comp.search,
+    -- comp.search,
     comp.navic,
 }
 

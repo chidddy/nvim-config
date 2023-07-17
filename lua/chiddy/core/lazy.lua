@@ -4,15 +4,17 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-require('lazy').setup('chiddy.plugins', {
+require('lazy').setup({
     root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
+    spec = {
+        { import = 'chiddy.plugins' },
+    },
     defaults = {
         lazy = true, -- should plugins be lazy-loaded?
         version = nil,
         -- version = "*", -- enable this to try installing the latest stable versions of plugins
     },
     lockfile = vim.fn.stdpath('config') .. '/lazy-lock.json', -- lockfile generated after running update.
-    concurrency = nil, ---@type number limit the maximum amount of concurrent tasks
     git = {
         -- defaults for the `Lazy log` command
         log = {
@@ -89,49 +91,32 @@ require('lazy').setup('chiddy.plugins', {
             paths = {},
             ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
-                -- 'gzip',
-                -- 'matchit',
-                -- 'matchparen',
-                -- 'netrwPlugin',
-                -- 'tarPlugin',
-                'tohtml',
-                -- 'tutor',
-                -- 'zipPlugin',
-                'netrw',
-                'netrwPlugin',
-                'netrwSettings',
-                'netrwFileHandlers',
-                'gzip',
-                'zip',
-                'zipPlugin',
-                'tar',
-                'tarPlugin',
+                '2html_plugin',
+                'fzf',
                 'getscript',
                 'getscriptPlugin',
-                'vimball',
-                'vimballPlugin',
-                '2html_plugin',
+                'gzip',
                 'logiPat',
-                'rrhelper',
-                'spellfile_plugin',
                 'matchit',
                 'matchparen',
-                'fzf',
-                'python3_provider',
+                'netrw',
+                'netrwFileHandlers',
+                'netrwPlugin',
+                'netrwSettings',
                 'node_provider',
+                'python3_provider',
+                'rrhelper',
                 'ruby_provider',
+                'spellfile_plugin',
+                'tar',
+                'tarPlugin',
+                'tohtml',
                 'tutor',
+                'vimball',
+                'vimballPlugin',
+                'zip',
+                'zipPlugin',
             },
         },
     },
-    -- lazy can generate helptags from the headings in markdown readme files,
-    -- so :help works even for plugins that don't have vim docs.
-    -- when the readme opens with :help it will be correctly displayed as markdown
-    readme = {
-        root = vim.fn.stdpath('state') .. '/lazy/readme',
-        files = { 'README.md' },
-        -- only generate markdown helptags for plugins that dont have docs
-        skip_if_doc_exists = true,
-    },
-    debug = false,
 })

@@ -1,3 +1,4 @@
+---@type StatusLine
 local percent = {
     provider = function()
         local curline = vim.fn.line('.')
@@ -11,12 +12,14 @@ local percent = {
     end,
 }
 
+---@type StatusLine
 local position = {
     provider = function()
         return string.format('%3d:%-2d', vim.fn.line('.'), vim.fn.virtcol('.'))
     end,
 }
 
+---@type StatusLine
 local scrollbar = {
     static = {
         sbar = { '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█' },
@@ -32,6 +35,7 @@ local scrollbar = {
     hl = { fg = 'blue' },
 }
 
+---@type StatusLine
 local search = {
     condition = function(self)
         local lines = vim.api.nvim_buf_line_count(0)

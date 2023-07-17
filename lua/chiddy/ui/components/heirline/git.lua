@@ -2,6 +2,7 @@ local conditions = require('heirline.conditions')
 local icons = require('chiddy.utils.icons')
 local utils = require('heirline.utils')
 
+---@type StatusLine
 local git = {
     condition = conditions.is_git_repo,
     init = function(self)
@@ -10,6 +11,7 @@ local git = {
     end,
 }
 
+---@type StatusLine
 local has_changes = {
     hl = function(self)
         -- local ret = { fg = 'blue' }
@@ -17,11 +19,13 @@ local has_changes = {
     end,
 }
 
+---@type StatusLine
 local branch = {
     provider = function(self)
         return icons.git.Branch .. ' ' .. self.status_dict.head
     end,
 }
+---@type StatusLine
 local changes = {
     {
         provider = function(self)

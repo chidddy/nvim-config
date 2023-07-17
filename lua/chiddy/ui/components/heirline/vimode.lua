@@ -1,5 +1,7 @@
 local utils = require('chiddy.utils.status')
 local icons = require('chiddy.utils.icons')
+
+---@type StatusLine
 local vimode = {
     provider = function(self)
         return utils.mode_name(self.mode) .. ' ' .. icons.misc.Ball

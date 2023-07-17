@@ -3,7 +3,8 @@ local utils = require('heirline.utils')
 local devicons = require('nvim-web-devicons')
 local icons = require('chiddy.utils.icons')
 
-local fileicon = {
+---@type StatusLine
+local icon = {
     condition = function(self)
         return select(2, devicons.get_icon(self.filename, self.extension, { default = true })) ~= 'DevIconDefault'
     end,
@@ -18,7 +19,8 @@ local fileicon = {
     end,
 }
 
-local filename = {
+---@type StatusLine
+local name = {
     init = function(self)
         self._filename = vim.fn.fnamemodify(self.filename, ':t')
         if self._filename == '' then
@@ -32,7 +34,8 @@ local filename = {
     },
 }
 
-local fileflags = {
+---@type StatusLine
+local flags = {
     {
         condition = function()
             return vim.bo.modifiable and not vim.bo.readonly
@@ -47,7 +50,8 @@ local fileflags = {
     },
 }
 
-local filenamemod = {
+---@type StatusLine
+local modified = {
     hl = function()
         if vim.bo.modified then
             return { fg = 'cyan', bold = true, force = true }
@@ -57,7 +61,8 @@ local filenamemod = {
     end,
 }
 
-local filetype = {
+---@type StatusLine
+local type = {
     provider = function()
         -- return string.lower(vim.bo.filetype)
         return vim.bo.filetype
@@ -69,21 +74,24 @@ local filetype = {
     -- hl = { fg = select(2, devicons.get_icon_by_filetype(vim.bo.filetype)), bold = true, force = true },
 }
 
-local fileencoding = {
+---@type StatusLine
+local encoding = {
     provider = function()
         local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc
         return enc ~= 'utf-8' and enc:upper()
     end,
 }
 
-local fileformat = {
+---@type StatusLine
+local format = {
     provider = function()
         local fmt = vim.bo.fileformat
         return fmt ~= 'unix' and fmt:upper()
     end,
 }
 
-local filesize = {
+---@type StatusLine
+local size = {
     provider = function(self)
         local suffix = { 'b', 'k', 'M', 'G', 'T', 'P', 'E' }
         -- local index = 1
@@ -101,13 +109,16 @@ local filesize = {
     end,
 }
 
-local filelastmod = {
+---@type StatusLine
+local last_mod = {
     provider = function()
         local ftime = vim.fn.getftime(vim.api.nvim_buf_get_name(0))
         return (ftime > 0) and os.date('%c', ftime)
     end,
 }
-local dirname = {
+
+---@type StatusLine
+local folder = {
     hl = { fg = 'blue', bold = true },
     {
         provider = function()
@@ -116,6 +127,7 @@ local dirname = {
     },
 }
 
+---@type StatusLine
 local cwd = {
     hl = { fg = 'blue', bold = true },
     {
@@ -126,13 +138,13 @@ local cwd = {
 }
 
 return {
-    filename = utils.insert(utils.insert(filenamemod, filename, unpack(fileflags)), { provider = '%<' }),
-    fileicon = fileicon,
-    filetype = filetype,
-    fileencoding = fileencoding,
-    fileformat = fileformat,
-    filesize = filesize,
-    filemod = filelastmod,
-    folder = dirname,
+    filename = utils.insert(utils.insert(modified, name, unpack(flags)), { provider = '%<' }),
+    fileicon = icon,
+    filetype = type,
+    fileencoding = encoding,
+    fileformat = format,
+    filesize = size,
+    filemod = last_mod,
+    folder = folder,
     cwd = cwd,
 }
