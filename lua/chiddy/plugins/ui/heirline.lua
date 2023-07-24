@@ -5,11 +5,14 @@ local M = {
 }
 
 function M.config()
-    local heirline = require('heirline')
-    local status = require('chiddy.ui.themes.' .. require('chiddy.core.config').theme .. '.heirline')
-    heirline.load_colors(status.colors)
-    heirline.setup({
+    -- local heirline = require('heirline')
+    -- local status = require('chiddy.ui.themes.' .. require('chiddy.core.config').theme .. '.heirline')
+    local status = require('chiddy.ui.themes.' .. require('chiddy.core.config').theme .. '.heirline.statusline')
+    require('heirline').setup({
         statusline = status.statuslines,
+        opts = {
+            colors = status.colors,
+        },
     })
 end
 

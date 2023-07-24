@@ -1,6 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'L3MON4D3/LuaSnip',
+    build = 'make install_jsregexp',
     dependencies = {
         { 'rafamadriz/friendly-snippets' },
         {
@@ -31,7 +32,7 @@ function M.config()
     snip.setup({
         history = true,
         region_check_events = 'CursorMoved,CursorHold,InsertEnter',
-        delete_check_events = 'InsertLeave',
+        delete_check_events = 'InsertLeave, TextChanged',
         enable_autosnippets = true,
         ext_opts = {
             [types.choiceNode] = {

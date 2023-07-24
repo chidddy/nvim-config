@@ -73,6 +73,7 @@ function M.config()
             notify = true,
             nvimtree = true,
             overseer = true,
+            rainbow_delimiters = true,
             semantic_tokens = true,
             treesitter = true,
             treesitter_context = true,

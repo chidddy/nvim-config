@@ -13,6 +13,9 @@ vim.api.nvim_create_autocmd('User', {
         vim.api.nvim_set_hl(0, 'murmur_cursor_rgb', {
             bg = cutils.modify(colors.main, { l = 52, c = 8.3 }),
         })
+        vim.api.nvim_set_hl(0, 'murmur_cursor_rgb_current', {
+            bg = cutils.modify(colors.main, { l = 52, c = 8.3 }),
+        })
         vim.api.nvim_set_hl(0, 'LspInlayHint', {
             bold = true,
             fg = cutils.modify(colors.main, { l = 86, c = 6.5 }),
@@ -26,7 +29,7 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.bo[event.buf].buflisted = false
         vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
     end,
-    pattern = require('chiddy.core.config').quick_exit_ft,
+    pattern = require('chiddy.core.config').ft.quick_close,
 })
 -- Disable statusline in dashboard
 vim.api.nvim_create_autocmd('User', {
@@ -35,14 +38,12 @@ vim.api.nvim_create_autocmd('User', {
         -- store current statusline value and use that
         local old_tabline = vim.opt_local.showtabline
         local old_ruler = vim.opt_local.ruler
-        local old_laststatus = vim.opt_local.laststatus
         vim.api.nvim_create_autocmd('BufUnload', {
             buffer = 0,
             callback = function()
                 vim.opt_local.guicursor:remove('a:Cursor2/lCursor2')
                 vim.opt_local.ruler = old_ruler
                 vim.opt_local.showtabline = old_tabline
-                vim.opt_local.laststatus = old_laststatus
             end,
         })
         local hl = vim.api.nvim_get_hl_by_name('Cursor', true)
@@ -55,7 +56,6 @@ vim.api.nvim_create_autocmd('User', {
         vim.opt_local.guicursor:append('a:Cursor2/lCursor2')
         vim.opt_local.ruler = false
         vim.opt_local.showtabline = 0
-        vim.opt_local.laststatus = 0
     end,
 })
 
@@ -67,31 +67,48 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.keymap.set('n', '<backspace>', '<c-o>', { buffer = true })
     end,
 })
--- vim.api.nvim_create_autocmd('BufWritePost', {
---     callback = function()
---         if require('chiddy.core.config').lsp.format_on_save == true then
---             vim.cmd('FormatWrite')
---             -- works just dont want to keep in case they change calling convention
---             -- require('formatter.format').format('', nil, 1, -1, { write = true })
---         end
---     end,
--- })
+
+vim.api.nvim_create_augroup('neogit-additions', {})
+vim.api.nvim_create_autocmd('FileType', {
+    group = 'neogit-additions',
+    pattern = 'NeogitCommitMessage',
+    command = 'silent! set filetype=gitcommit',
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'gitcommit', 'markdown', 'NeogitCommitMessage' },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.spell = true
+    end,
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+    callback = function()
+        local should_skip = false
+        if vim.fn.argc() > 0 or vim.fn.line2byte(vim.fn.line('$')) ~= -1 or not vim.o.modifiable then
+            should_skip = true
+        else
+            for _, arg in pairs(vim.v.argv) do
+                if arg == '-b' or arg == '-c' or vim.startswith(arg, '+') or arg == '-S' then
+                    should_skip = true
+                    break
+                end
+            end
+        end
+        if not should_skip then
+            -- require('alpha').start(true, require('alpha').default_config)
+            local theme = string.format('chiddy.ui.themes.%s.alpha', require('chiddy.core.config').theme)
+            require('alpha').start(true, require(theme).config)
+            vim.schedule(function()
+                vim.cmd.doautocmd('FileType')
+            end)
+        end
+    end,
+})
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank({ higroup = 'Visual', timeout = 100 })
     end,
 })
-
--- vim.api.nvim_create_autocmd({ 'CursorHold' }, {
---     pattern = '*',
---     callback = function()
---         if vim.w.diag_shown then
---             return
---         end
---         if vim.w.cursor_word ~= '' then
---             vim.diagnostic.open_float()
---             vim.w.diag_shown = true
---         end
---     end,
--- })

@@ -4,7 +4,7 @@ local funcs = cutils.funcs
 
 local utils = {}
 
-local mm = {
+local mode_names = {
     n = 'normal',
     p = 'o-pending',
     vl = 'v-line',
@@ -25,7 +25,7 @@ local mm = {
     nn = 'none',
 }
 
-local ms = {
+local mode_names_short = {
     n = 'n',
     p = 'op',
     vl = 'vl',
@@ -45,7 +45,7 @@ local ms = {
     nn = 'none',
 }
 
-local mb = {
+local mode_colors = {
     n = 'blue',
     i = 'green',
     c = 'orange',
@@ -55,7 +55,7 @@ local mb = {
     s = 'red',
 }
 
-local mc = {
+local mode_colors_translation = {
     n = 'n',
     p = 'n',
     vl = 'v',
@@ -75,7 +75,7 @@ local mc = {
     nn = 'x',
 }
 
-local mode_names = {
+local mode_names_translation = {
     n = 'n',
     no = 'p',
     nov = 'p',
@@ -116,53 +116,24 @@ local mode_names = {
 }
 
 function utils.mode_name(mode)
-    return mm[mode_names[mode]]
+    return mode_names[mode_names_translation[mode]]
 end
 
 function utils.mode_name_short(mode)
-    return ms[mode_names[mode]]
+    return mode_names_short[mode_names_translation[mode]]
 end
 
 function utils.mode_color(mode)
-    return mb[mc[mode_names[mode]]]
+    return mode_colors[mode_colors_translation[mode_names_translation[mode]]]
 end
 
--- red = clrs.red,
--- blue = clrs.blue,
--- green = clrs.green,
--- yellow = clrs.yellow,
--- orange = clrs.peach,
--- purple = clrs.mauve,
--- cyan = clrs.sky,
--- teal = clrs.teal,
--- gray = clrs.overlay0,
--- bg = clrs.base,
--- text = clrs.text,
--- text_dark = clrs.surface0,
--- modes = {
---     normal = clrs.blue,
---     insert = clrs.green,
---     visual = clrs.purple,
---     delete = clrs.red,
---     copy = clrs.blue,
--- },
--- git = {
---     added = clrs.green,
---     changed = clrs.yellow,
---     removed = clrs.red,
--- },
--- diag = {
---     error = clrs.red,
---     warn = clrs.yellow,
---     info = clrs.sky,
---     hint = clrs.teal,
--- },
 function utils.create_colors()
     return {
+        ---TODO: use 5 stages of grief for bg color
         base = colors.bg_dark,
-        first = cutils.modify(colors.bg, { l = funcs.add(11), c = funcs.add(1.7) }),
-        second = cutils.modify(colors.bg, { l = funcs.add(5.3), c = funcs.add(0.8), h = funcs.add(2) }),
-        third = cutils.modify(colors.bg, { l = funcs.add(1), c = funcs.minus(0.2), h = funcs.add(0.2) }),
+        layer1 = cutils.modify(colors.bg, { l = funcs.add(1), c = funcs.minus(0.2), h = funcs.add(0.2) }),
+        layer2 = cutils.modify(colors.bg, { l = funcs.add(5.3), c = funcs.add(0.8), h = funcs.add(2) }),
+        layer3 = cutils.modify(colors.bg, { l = funcs.add(11), c = funcs.add(1.7) }),
         text = colors.text,
         text_dark = colors.text_dark,
         none = 'NONE',

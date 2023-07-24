@@ -103,12 +103,7 @@ function M.config()
         },
 
         mapping = cmp.mapping.preset.insert({
-            -- ['<C-k>'] = cmp.mapping.select_prev_item(),
-            -- ['<C-j>'] = cmp.mapping.select_next_item(),
-            -- ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-2), { 'i', 'c' }),
-            -- ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(2), { 'i', 'c' }),
             ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-            -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
             ['<CR>'] = cmp.mapping.confirm({
                 select = false,
                 behavior = cmp.ConfirmBehavior.Insert,
@@ -135,7 +130,7 @@ function M.config()
                     -- vim.cmd(':<')
                 end
             end, { 'i', 's', 'c' }),
-            -- todo finish
+            -- TODO: finish
         }),
 
         formatting = {

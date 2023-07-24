@@ -24,8 +24,8 @@ g.clipboard = {
 
 -- opt.autowrite = true
 o.clipboard = 'unnamedplus,unnamed'
--- opt.shada = "!,'10,<50,s10,h,/100,:10"
--- opt.shadafile = vim.fn.stdpath('state') .. '/shada/main.shada'
+opt.shada = "!,'10,<50,s10,h,/100,:10"
+opt.shadafile = vim.fn.stdpath('state') .. '/shada/main.shada'
 opt.conceallevel = 3
 opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 opt.grepformat = '%f:%l:%c:%m'
@@ -124,6 +124,7 @@ opt.fillchars = {
     foldclose = icons.ui.ArrowClosed,
     foldsep = ' ',
     fold = ' ',
+    diff = '/',
 }
 opt.listchars = {
     trail = icons.ui.Circle,

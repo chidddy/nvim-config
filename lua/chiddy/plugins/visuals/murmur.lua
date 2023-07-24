@@ -13,7 +13,7 @@ function M.config()
         -- cursor_rgb_always_use_config = true, -- if set to `true`, then always use `cursor_rgb`.
         max_len = 80,
         min_len = 2,
-        exclude_filetypes = require('chiddy.core.config').ft_strict_disabled,
+        exclude_filetypes = require('chiddy.core.config').ft.disable_visuals,
         callbacks = {
             -- to trigger the close_events of vim.diagnostic.open_float.
             function()

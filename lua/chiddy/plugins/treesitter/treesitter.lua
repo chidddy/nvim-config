@@ -7,12 +7,12 @@ local M = {
 
 M.dependencies = {
     { 'nvim-treesitter/playground' },
-    { 'HiPhish/nvim-ts-rainbow2' },
     { 'drybalka/tree-climber.nvim' },
     { 'windwp/nvim-ts-autotag' },
     { 'RRethy/nvim-treesitter-endwise' },
     { 'RRethy/nvim-treesitter-textsubjects' },
     { 'JoosepAlviste/nvim-ts-context-commentstring' },
+    { 'HiPhish/rainbow-delimiters.nvim' },
 }
 
 function M.config()
@@ -63,22 +63,22 @@ function M.config()
             enable = true,
             enable_autocmd = false,
         },
-        rainbow = {
-            enable = true,
-            query = {
-                'rainbow-parens',
-            },
-            strategy = require('ts-rainbow.strategy.global'),
-            hlgroups = {
-                'rainbowcol1',
-                'rainbowcol2',
-                'rainbowcol3',
-                'rainbowcol4',
-                'rainbowcol5',
-                'rainbowcol6',
-                'rainbowcol7',
-            },
-        },
+        -- rainbow = {
+        --     enable = true,
+        --     query = {
+        --         'rainbow-parens',
+        --     },
+        --     strategy = require('ts-rainbow.strategy.global'),
+        --     hlgroups = {
+        --         'rainbowcol1',
+        --         'rainbowcol2',
+        --         'rainbowcol3',
+        --         'rainbowcol4',
+        --         'rainbowcol5',
+        --         'rainbowcol6',
+        --         'rainbowcol7',
+        --     },
+        -- },
         autotag = {
             enable = true,
         },
@@ -86,6 +86,9 @@ function M.config()
             enable = true,
         },
     })
+    -- vim.g.rainbow_delimiters = {
+    --
+    -- }
 end
 
 return M

@@ -1,7 +1,7 @@
 local conditions = require('heirline.conditions')
 local comp = require('chiddy.ui.components.heirline')
 
-local statusline = {
+return {
     condition = function()
         return conditions.buffer_matches({ buftype = { 'terminal' } })
     end,
@@ -11,5 +11,3 @@ local statusline = {
     comp.term,
     comp.align,
 }
-
-return statusline

@@ -25,9 +25,9 @@ function M.config()
             { fg = '#8FB272' },
         },
         highlight = {},
-        excluded_filetypes = require('chiddy.core.config').ft_strict_disabled,
-        disable = function(lang, bufnr)
-            return vim.tbl_contains(require('chiddy.core.config').ft_strict_disabled, lang)
+        excluded_filetypes = require('chiddy.core.config').ft.disable_visuals,
+        disable = function(lang, _bufnr)
+            return vim.tbl_contains(require('chiddy.core.config').ft.disable_visuals, lang)
         end,
         paint_arg_declarations = true,
         paint_arg_usages = true,

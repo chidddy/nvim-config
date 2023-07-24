@@ -1,6 +1,7 @@
 -- originally authored by @AdamWhittingham
 -- modified by chiddy
 -- requires projects.nvim
+-- TODO: redo, remove projects.nvim requirement
 
 local plenary_path = require('plenary.path')
 local dashboard = require('alpha.themes.dashboard')
@@ -112,13 +113,13 @@ local buttons = {
     val = {
         { type = 'text', val = 'actions', opts = { hl = 'SpecialComment', position = 'center' } },
         { type = 'padding', val = 1 },
-        dashboard.button('w', icons.ui.Folder .. '  open here', '<cmd>cd .<CR><cmd>e .<CR>'),
-        dashboard.button('e', icons.ui.NewFile .. '  new file', '<cmd>ene<CR>'),
-        dashboard.button('f', icons.ui.SearchFile .. '  find file', '<cmd>Telescope find_files<CR>'),
-        dashboard.button('p', icons.git.Repo .. '  open project', '<cmd>Telescope projects<CR>'),
-        dashboard.button('c', icons.ui.Gear .. '  configuration', '<cmd>cd ~/.config/nvim/<CR><cmd>e .<CR>'),
-        dashboard.button('u', icons.ui.CloudDownload .. '  plugins', '<cmd>Lazy home<CR>'),
-        dashboard.button('q', icons.ui.SignOut .. '  quit', '<cmd>qa<CR>'),
+        dashboard.button('w', icons.ui.Folder .. '  open here', ':e .<CR>'),
+        dashboard.button('e', icons.ui.NewFile .. '  new file', ':ene<CR>'),
+        dashboard.button('f', icons.ui.SearchFile .. '  find file', ':Telescope find_files<CR>'),
+        dashboard.button('p', icons.git.Repo .. '  open project', ':Telescope projects<CR>'),
+        dashboard.button('c', icons.ui.Gear .. '  configuration', ':e ~/.config/nvim/<CR>'),
+        dashboard.button('u', icons.ui.CloudDownload .. '  plugins', ':Lazy home<CR>'),
+        dashboard.button('q', icons.ui.SignOut .. '  quit', ':qa<CR>'),
     },
     opts = {
         hl = 'Keyword',
@@ -192,8 +193,5 @@ local config = {
 }
 
 return {
-    header = header,
-    buttons = buttons,
-    footer = footer,
     config = config,
 }

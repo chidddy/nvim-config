@@ -208,6 +208,10 @@ function M.config()
         },
         filesystem = {
             bind_to_cwd = true,
+            cwd_target = {
+                sidebar = 'global',
+                current = 'global',
+            },
             filtered_items = {
                 visible = true,
                 hide_dotfiles = false,
