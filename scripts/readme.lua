@@ -35,7 +35,7 @@ end
 
 -- PERF: optimized code to get package name without using lua patterns
 function Spec.get_name(pkg)
-    local name = pkg:sub(-4) == '.git' and pkg:sub(1, -5) or pkg
+    local name = pkg:sub(0, 4) == '.git' and pkg:sub(1, -5) or pkg
     name = name:sub(-1) == '/' and name:sub(1, -2) or name
     local slash = name:reverse():find('/', 1, true) --[[@as number?]]
     return slash and name:sub(#name - slash + 2) or pkg:gsub('%W+', '_')
