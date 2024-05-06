@@ -1,7 +1,8 @@
 ---@class LazyPlugin
 local M = {
     'williamboman/mason.nvim',
-    event = 'VeryLazy',
+    cmd = { 'Mason', 'MasonUpdate' },
+    build = ':MasonUpdate',
     dependencies = {
         'williamboman/mason-lspconfig.nvim',
     },

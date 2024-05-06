@@ -6,9 +6,10 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup({
     root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
-    spec = {
-        { import = 'chiddy.plugins' },
-    },
+    -- spec = {
+    --     { import = 'chiddy.plugins' },
+    -- },
+    spec = 'chiddy.plugins',
     defaults = {
         lazy = true, -- should plugins be lazy-loaded?
         version = nil,
@@ -18,12 +19,17 @@ require('lazy').setup({
     git = {
         -- defaults for the `Lazy log` command
         log = {
-            '--since=1 days ago',
+            '--since=7 days ago',
             '--no-merges',
             '--perl-regexp',
             '--author=^((?!git).*)$',
             '--invert-grep',
-            '--grep=chore:',
+            '--grep=^chore:',
+            '--grep=^chore(.*):',
+            -- '--grep=^docs:',
+            -- '--grep=^docs(.*):',
+            '--grep=^test:',
+            '--grep=^test(.*):',
         }, -- show the last 10 commits
         -- log = { '--since=3 days ago' }, -- show commits from the last 3 days
         timeout = 120, -- kill processes that take more than 2 minutes
@@ -82,7 +88,7 @@ require('lazy').setup({
             -- The default is to disable on:
             --  * VimEnter: not useful to cache anything else beyond startup
             --  * BufReadPre: this will be triggered early when opening a file from the command line directly
-            disable_events = { 'VimEnter', 'BufReadPre' },
+            -- disable_events = { 'VimEnter', 'BufReadPre' },
         },
         reset_packpath = true, -- reset the package path to improve startup time
         rtp = {
@@ -119,4 +125,22 @@ require('lazy').setup({
             },
         },
     },
+    -- lazy can generate helptags from the headings in markdown readme files,
+    -- so :help works even for plugins that don't have vim docs.
+    -- when the readme opens with :help it will be correctly displayed as markdown
+    readme = {
+        enabled = true,
+        root = vim.fn.stdpath('state') .. '/lazy/readme',
+        files = { 'README.md', 'lua/**/README.md' },
+        -- only generate markdown helptags for plugins that dont have docs
+        skip_if_doc_exists = true,
+    },
+    state = vim.fn.stdpath('state') .. '/lazy/state.json', -- state info for checker and other things
+    build = {
+        -- Plugins can provide a `build.lua` file that will be executed when the plugin is installed
+        -- or updated. When the plugin spec also has a `build` command, the plugin's `build.lua` not be
+        -- executed. In this case, a warning message will be shown.
+        warn_on_override = true,
+    },
+    debug = false,
 })

@@ -24,6 +24,21 @@ function M.config()
         }
     end
 
+    local function uncrustify()
+        local args = {}
+        local found = vim.fs.find('uncrustify.cfg', { upward = true, path = ctx.dirname })[1]
+        if found then
+            args = { '-c', found, '-q', '-l', 'cpp' }
+        else
+            args = { '-q', '-l', 'cpp' }
+        end
+        return {
+            exe = 'uncrustify',
+            args = args,
+            stdin = true,
+        }
+    end
+
     require('formatter').setup({
         logging = true,
         log_level = vim.log.levels.WARN,

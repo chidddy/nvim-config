@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'mvllow/modes.nvim',
-    event = 'VeryLazy',
+    event = { 'BufReadPost', 'BufNewFile' },
 }
 function M.config()
     local modes = require('modes')

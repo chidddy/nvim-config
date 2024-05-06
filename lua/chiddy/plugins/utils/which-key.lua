@@ -1,6 +1,10 @@
 ---@class LazyPlugin
-local M = {
+local plugin = {
     'folke/which-key.nvim',
 }
 
-return M
+function plugin.config()
+    require('which-key').setup({})
+end
+
+return plugin

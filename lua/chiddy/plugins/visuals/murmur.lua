@@ -1,11 +1,25 @@
 ---@class LazyPlugin
 local M = {
     'nyngwang/murmur.lua',
-    event = 'VeryLazy',
+    event = { 'BufReadPost', 'BufNewFile' },
 }
 
 function M.config()
+    local cutils = require('chiddy.utils.colors')
+    local colors = require('chiddy.ui.colors').get()
+    -- vim.api.nvim_set_hl(0, 'murmur_cursor_rgb', {
+    --     bg = cutils.modify(colors.main, { l = 52, c = 8.3 }),
+    -- })
+    -- vim.api.nvim_set_hl(0, 'murmur_cursor_rgb_current', {
+    --     bg = cutils.modify(colors.main, { l = 52, c = 8.3 }),
+    -- })
     require('murmur').setup({
+        cursor_rgb = {
+            bg = cutils.modify(colors.main, { l = 52, c = 8.3 }),
+        },
+        cursor_rgb_current = {
+            bg = cutils.modify(colors.main, { l = 52, c = 8.3 }),
+        },
         yank_blink = {
             enabled = false,
             on_yank = nil,

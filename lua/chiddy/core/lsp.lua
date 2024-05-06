@@ -5,6 +5,12 @@ local icontable = {
     ['Info'] = icons.diagnostics.Information,
     ['Hint'] = icons.diagnostics.Hint,
 }
+local sevtable = {
+    'Error',
+    'Warn',
+    'Info',
+    'Hint',
+}
 
 vim.diagnostic.config({
     signs = true,
@@ -15,12 +21,24 @@ vim.diagnostic.config({
         prefix = '',
         format = function(diag)
             local ret = ''
+            -- {
+            --   bufnr = 13,
+            --   col = 4,
+            --   end_col = 4,
+            --   end_lnum = 2,
+            --   lnum = 2,
+            --   message = "mixed tables are not allowed [mixed_table]",
+            --   namespace = 43,
+            --   severity = 2,
+            --   source = "selene"
+            -- }
             if diag.source ~= nil then
                 ret = ret .. string.format('(%s)', diag.source:sub(1, -1))
             end
             if diag.message ~= nil then
                 ret = ret .. string.format('%s', diag.message)
             end
+            -- return string.format('%s  %s: %s', icontable[sevtable[diag.severity]], diag.source:sub(1, -1), diag.message)
             return ret
         end,
     }, -- {prefix = '<'}

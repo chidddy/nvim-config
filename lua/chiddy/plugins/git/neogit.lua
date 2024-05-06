@@ -1,6 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'NeogitOrg/neogit',
+    branch = 'nightly',
 }
 
 function M.config()

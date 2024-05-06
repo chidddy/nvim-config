@@ -2,12 +2,13 @@
 local M = {
     'nvim-neorg/neorg',
     event = 'BufEnter *.norg',
+    build = ':Neorg sync-parsers',
 }
 function M.config()
     require('neorg').setup({
         load = {
             ['core.defaults'] = {},
-            ['core.norg.dirman'] = {
+            ['core.dirman'] = {
                 config = {
                     workspaces = {
                         work = '~/notes/work',
@@ -15,8 +16,8 @@ function M.config()
                     },
                 },
             },
-            ['core.norg.concealer'] = {},
-            ['core.norg.completion'] = {
+            ['core.concealer'] = {},
+            ['core.completion'] = {
                 config = {
                     engine = 'nvim-cmp',
                 },

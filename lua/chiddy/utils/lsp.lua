@@ -7,7 +7,9 @@ function U.capabilities()
         require('cmp_nvim_lsp').default_capabilities(),
         { textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } } }
     )
+
     return capabilities
+    -- return require('coq').lsp_ensure_capabilities({ capabilities = capabilities })
 end
 
 function U.disable_formatting(client, buf)
@@ -25,13 +27,18 @@ U.default_flags = {
 function U.default_on_attach(client, buf)
     if client.name ~= 'null-ls' then
         require('chiddy.lsp.keymaps')(client, buf)
-        if client.supports_method('textDocument/inlayHint', '') then
-            vim.lsp.inlay_hint(buf, true)
+        if client.supports_method('textDocument/inlayHint') then
+            vim.lsp.inlay_hint.enable(buf, true)
         end
-        if client.supports_method('textDocument/documentSymbol', '') then
+        if client.supports_method('textDocument/documentSymbol') then
             require('nvim-navic').attach(client, buf)
         end
     end
+    -- if client.name == 'clangd' then
+    -- vim.lsp.inlay_hint.enable(buf, true)
+    -- require('clangd_extensions.inlay_hints').setup_autocmd()
+    -- require('clangd_extensions.inlay_hints').set_inlay_hints()
+    -- end
 end
 
 return U

@@ -191,6 +191,7 @@ local icons = {
         spell = '暈',
         luasnip = '',
         treesitter = '',
+        undefined = '',
     },
     dap = {
         Breakpoint = 'ß',

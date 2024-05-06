@@ -20,9 +20,9 @@ M.config = {
         'typescript',
         'typescriptreact',
         'typescript.tsx',
-        'vue',
-        'svelte',
-        'astro',
+        -- 'vue',
+        -- 'svelte',
+        -- 'astro',
     },
     settings = {
         implicitProjectConfiguration = {

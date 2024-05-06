@@ -2,23 +2,23 @@
 local M = {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = 'VeryLazy',
+    event = { 'BufReadPost', 'BufNewFile' },
 }
 
 M.dependencies = {
-    { 'nvim-treesitter/playground' },
     { 'drybalka/tree-climber.nvim' },
-    { 'windwp/nvim-ts-autotag' },
+    { 'gungun974/nvim-ts-autotag' },
     { 'RRethy/nvim-treesitter-endwise' },
     { 'RRethy/nvim-treesitter-textsubjects' },
-    { 'JoosepAlviste/nvim-ts-context-commentstring' },
     { 'HiPhish/rainbow-delimiters.nvim' },
 }
 
 function M.config()
+    require('nvim-treesitter.install').prefer_git = true
     require('nvim-treesitter.configs').setup({
         auto_install = true,
         ensure_installed = 'all',
+        ignore_install = { 'comment' },
         sync_install = false,
         autopairs = {
             enable = false,
@@ -59,10 +59,6 @@ function M.config()
                 ['i;'] = 'textsubjects-container-inner',
             },
         },
-        context_commentstring = {
-            enable = true,
-            enable_autocmd = false,
-        },
         -- rainbow = {
         --     enable = true,
         --     query = {
@@ -86,6 +82,7 @@ function M.config()
             enable = true,
         },
     })
+    require('nvim-ts-autotag').setup({})
     -- vim.g.rainbow_delimiters = {
     --
     -- }

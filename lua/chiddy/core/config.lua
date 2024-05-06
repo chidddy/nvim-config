@@ -12,27 +12,36 @@ local M = {
     },
     home = '/home/chiddy',
     projects = '/projects',
+    obsidian = 'syncthing/obsidian/first',
     locals = '/projects/lua/nvim/',
     palette = 'catppuccin',
     theme = 'basic',
     lsp = {
         servers = {
             system = {
-                'clangd',
+                -- 'efm',
                 'lua_ls',
+                'rust_analyzer',
             },
             installer = {
                 'bashls',
+                -- 'biome',
+                'clangd',
                 'cmake',
-                'rust_analyzer',
+                'cssls',
                 'gopls',
+                'html',
+                'jsonls',
+                'lemminx',
+                'marksman',
+                -- 'quick_lint_js',
+                'svelte',
+                -- 'taplo',
+                'texlab',
                 'tsserver',
                 'typst_lsp',
                 'yamlls',
-                'lemminx',
-                'html',
-                'jsonls',
-                'taplo',
+                'zls',
             },
         },
         format_on_save = true,
@@ -95,6 +104,22 @@ local M = {
             'quickfix',
         },
     },
+    textobjects = {
+        remaps = {
+            c = '}', -- [c]urly brace
+            r = ']', -- [r]ectangular bracket
+            b = ')', -- [b]racket
+            m = 'W', -- [m]assive word
+            q = '"', -- [q]uote
+            z = "'", -- [z]ingle quote
+            e = '`', -- t[e]mplate string / inline cod[e]
+        },
+        maps = {
+            ['function'] = 'f',
+            ['conditional'] = 'o',
+            ['call'] = 'l',
+            ['doubleSquareBracket'] = 'R',
+        },
+    },
 }
-
 return M

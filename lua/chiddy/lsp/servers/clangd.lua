@@ -1,46 +1,32 @@
--- TODO:
--- clangd C++ moment
--- local coq = require('coq')
--- require('clangd_extensions').setup(coq.lsp_ensure_capabilities(
+local U = require('chiddy.utils.lsp')
+local luv = require('luv')
+
+local cpu = luv.available_parallelism()
+local cap = U.capabilities()
+cap.offsetEncoding = 'utf-8'
+
 local M = {}
 M.config = {
-    server = {
-        cmd = {
-            'clangd',
-            '--background-index',
-            '--pch-storage=memory',
-            '--clang-tidy',
-            '--all-scopes-completion',
-            '--cross-file-rename',
-            '--completion-style=detailed',
-            '--header-insertion-decorated',
-            '--header-insertion=iwyu',
-            '--folding-ranges',
-            '--offset-encoding=utf-16',
-        },
-        single_file_support = true,
+    capabilities = cap,
+    cmd = {
+        'clangd',
+        -- '--offset-encoding=utf-8',
+        '--background-index',
+        -- '--completion-style=detailed',
+        '--pch-storage=memory',
+        '--enable-config',
+        '--function-arg-placeholders',
+        '--clang-tidy',
+        '--limit-references=3000',
+        '--limit-results=350',
+        -- '--log=error',
+        string.format('-j=%d', (cpu / 2)),
     },
-    extensions = {
-        autoSetHints = false,
-        inlay_hints = {
-            only_current_line = false,
-            only_current_line_autocmd = 'CursorHold',
-            show_parameter_hints = true,
-            parameter_hints_prefix = '<-',
-            other_hints_prefix = '=>',
-            max_len_align = false,
-            max_len_align_padding = 1,
-            right_align = false,
-            right_align_padding = 7,
-            highlight = 'Comment',
-            priority = 100,
-        },
-        memory_usage = {
-            border = 'none',
-        },
-        symbol_info = {
-            border = 'none',
-        },
+    init_options = {
+        clangdFileStatus = true,
+        usePlaceholders = true,
+        completeUnimported = true,
     },
+    single_file_support = true,
 }
 return M

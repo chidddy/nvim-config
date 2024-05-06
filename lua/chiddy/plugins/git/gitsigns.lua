@@ -1,7 +1,7 @@
 ---@class LazyPlugin
 local M = {
     'lewis6991/gitsigns.nvim',
-    event = 'VeryLazy',
+    event = { 'BufReadPre', 'BufNewFile' },
 }
 
 function M.config()

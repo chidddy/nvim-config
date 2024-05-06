@@ -2,7 +2,7 @@
 local M = {
     'folke/todo-comments.nvim',
     cmd = { 'TodoTrouble', 'TodoTelescope' },
-    event = 'VeryLazy',
+    event = { 'BufReadPre', 'BufNewFile' },
 }
 
 function M.config()

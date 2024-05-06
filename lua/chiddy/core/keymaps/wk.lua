@@ -413,6 +413,13 @@ local keys = {
         end,
         'show keymaps',
     },
+    y = {
+        require('yanky').yank,
+        'yank text',
+        silent = true,
+        expr = true,
+        mode = { 'n', 'x' },
+    },
     p = {
         function()
             require('yanky').put('p', false)
@@ -503,6 +510,20 @@ local keys = {
             'toggle linewise comments',
             mode = 'x',
         },
+    },
+
+    K = {
+        require('hover').hover,
+        'hover',
+    },
+
+    gK = {
+        require('hover').hover_select,
+        'hover (select)',
+    },
+    ['<MouseMove>'] = {
+        require('hover').hover_mouse,
+        'hover (mouse)',
     },
 }
 -- wk.register(keymap)

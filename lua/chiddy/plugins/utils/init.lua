@@ -1,4 +1,5 @@
 return {
+    { 'nvim-neotest/nvim-nio' },
     require('chiddy.plugins.utils.startuptime'),
     require('chiddy.plugins.utils.which-key'),
     require('chiddy.plugins.utils.neoconf'),
@@ -6,6 +7,7 @@ return {
     require('chiddy.plugins.utils.ccc'),
     require('chiddy.plugins.utils.navic'),
     require('chiddy.plugins.utils.hydra'),
+    require('chiddy.plugins.utils.hardtime'),
     require('chiddy.plugins.utils.telescope'),
     require('chiddy.plugins.utils.templates'),
     require('chiddy.plugins.utils.projects'),

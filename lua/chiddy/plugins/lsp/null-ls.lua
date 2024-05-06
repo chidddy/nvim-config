@@ -1,7 +1,8 @@
 ---@class LazyPlugin
 local M = {
-    'jose-elias-alvarez/null-ls.nvim',
-    event = 'VeryLazy',
+    'nvimtools/none-ls.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    enabled = false,
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
@@ -48,17 +49,17 @@ function M.config()
                 end,
                 diagnostics_format = '[eslint_d] #{m}\n(#{c})',
             }),
-            dgn.alex,
+            -- dgn.alex,
             dgn.luacheck,
             dgn.selene,
-            dgn.markdownlint,
+            -- dgn.markdownlint,
             dgn.trail_space,
             dgn.actionlint,
             dgn.checkmake,
             dgn.golangci_lint,
             dgn.clang_check,
             dgn.cmake_lint,
-            dgn.cspell,
+            -- dgn.cspell,
             dgn.zsh,
 
             -- code actions
@@ -66,30 +67,30 @@ function M.config()
             cda.refactoring,
 
             -- formatting
-            fmt.stylua.with({
-                extra_args = { '--config-path', vim.fn.expand('~/.config/nvim/.stylua.toml') },
-            }),
-            fmt.black,
-            fmt.markdownlint,
-            fmt.taplo,
-            fmt.gofmt,
-            fmt.rustfmt.with({
-                extra_args = { '--edition=2021' },
-            }),
-            fmt.prettierd.with({
-                env = {
-                    PRETTIERD_DEFAULT_CONFIG = vim.fn.expand('~/.config/nvim/.prettierrc.json'),
-                },
-            }),
-            fmt.eslint_d,
-            fmt.shfmt,
-            fmt.cmake_format,
-            fmt.uncrustify,
-            fmt.clang_format,
+            -- fmt.stylua.with({
+            --     extra_args = { '--config-path', vim.fn.expand('~/.config/nvim/.stylua.toml') },
+            -- }),
+            -- fmt.black,
+            -- fmt.markdownlint,
+            -- fmt.taplo,
+            -- fmt.gofmt,
+            -- fmt.rustfmt.with({
+            --     extra_args = { '--edition=2021' },
+            -- }),
+            -- fmt.prettierd.with({
+            --     env = {
+            --         PRETTIERD_DEFAULT_CONFIG = vim.fn.expand('~/.config/nvim/.prettierrc.json'),
+            --     },
+            -- }),
+            -- fmt.eslint_d,
+            -- fmt.shfmt,
+            -- fmt.cmake_format,
+            -- fmt.uncrustify,
+            -- fmt.clang_format,
         },
         on_attach = function(client, bufnr)
             U.default_on_attach(client, bufnr)
-            sync_save(client, bufnr)
+            -- sync_save(client, bufnr)
         end,
     })
 end

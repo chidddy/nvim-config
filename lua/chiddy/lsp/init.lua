@@ -1,12 +1,10 @@
 -- lsp moment
+-- vim.lsp.set_log_level('debug')
 local lsp = require('lspconfig')
 
 local default = require('chiddy.lsp.servers.default')
 
-local servers = require('chiddy.utils.tbl').merge_list(
-    require('chiddy.core.config').lsp.servers.system,
-    require('chiddy.core.config').lsp.servers.installer
-)
+local servers = require('chiddy.core.config').lsp.servers
 
 local function config(name)
     local ok, settings = pcall(require, 'chiddy.lsp.servers.' .. name)
@@ -18,14 +16,18 @@ local function config(name)
     return settings
 end
 
-vim.iter(servers):each(function(server)
+local function load(server)
     if server == 'rust_analyzer' then
         require('rust-tools').setup(config(server).config)
         -- lsp[server].setup(config(server).config.server)
-    elseif server == 'clangd' then
+        -- elseif server == 'clangd' then
+        -- require('')
         -- lsp[server].setup(config(server).config.server)
-        require('clangd_extensions').setup(config(server).config)
+        -- require('clangd_extensions').setup(config(server).config)
     else
         lsp[server].setup(config(server).config)
     end
-end)
+end
+
+vim.iter(servers.system):each(load)
+vim.iter(servers.installer):each(load)

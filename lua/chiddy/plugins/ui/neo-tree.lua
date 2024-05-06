@@ -8,7 +8,7 @@ local M = {
 }
 
 function M.config()
-    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+    -- vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
     local icons = require('chiddy.utils.icons')
 
     require('neo-tree').setup({

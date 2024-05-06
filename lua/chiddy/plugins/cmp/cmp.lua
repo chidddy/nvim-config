@@ -2,10 +2,12 @@
 local M = {
     'hrsh7th/nvim-cmp',
     event = { 'InsertEnter', 'CmdlineEnter' },
+    enabled = true,
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-nvim-lsp-signature-help',
         'lukas-reineke/cmp-under-comparator',
         'saadparwaiz1/cmp_luasnip',
         -- 'doxnit/cmp-luasnip-choice',
@@ -47,15 +49,11 @@ local function setup_highlights()
 end
 
 function M.config()
-    local lspkind = require('lspkind')
+    -- local lspkind = require('lspkind')
     local luasnip = require('luasnip')
     local cmp = require('cmp')
     local utils = require('chiddy.utils.cmp')
-    local icons = {
-        kind = require('chiddy.utils.icons').kind(' '),
-        type = require('chiddy.utils.icons').type(' '),
-        cmp = require('chiddy.utils.icons').cmp(' '),
-    }
+    local icons = require('chiddy.utils.icons')
     setup_highlights()
     -- utils
     local ignore_text = function(entry, ctx)
@@ -136,39 +134,30 @@ function M.config()
         formatting = {
             fields = { 'kind', 'abbr', 'menu' },
             format = function(entry, vim_item)
-                local kind = lspkind.cmp_format({
-                    mode = 'symbol_text',
-                    maxwidth = 50,
-                    symbol_map = vim.tbl_deep_extend('force', icons.kind, icons, cmp, icons.type),
-                })(entry, vim_item)
-                local strings = vim.split(kind.kind, '%s', { trimempty = true })
-                local format_icon = strings[1] or ''
-                local format_menu = strings[2] or ''
-                kind.kind = ' ' .. format_icon .. ' '
-                kind.menu = '    (' .. format_menu .. ')'
-                return kind
+                if entry.source.name == 'nvim_lsp_signature_help' then
+                    return vim_item
+                end
+                local symbol_map = vim.tbl_deep_extend('force', icons.kind, icons.type, icons.cmp)
+                vim_item.menu = string.format('    (%s)', vim_item.kind)
+                vim_item.kind = string.format(' %s ', symbol_map[vim_item.kind] or icons.cmp.undefined)
+                return vim_item
             end,
-            -- format = lspkind.cmp_format({
-            --     mode = 'symbol_text',
-            --     maxwidth = 50,
-            --     ellipsis_char = '...',
-            --     menu = source_mapping,
-            --     symbol_map = vim.tbl_deep_extend('force', icons.kind, icons, cmp, icons.type),
-            -- }),
         },
 
         -- installed sources
-        sources = {
+        sources = cmp.config.sources({
             { name = 'nvim_lsp', entry_filter = ignore_text },
+            -- { name = 'nvim_lsp_signature_help' },
             -- { name = 'nvim_lua' },
             { name = 'luasnip' },
-            { name = 'luasnip_choice' },
-            -- { name = 'path', max_item_countt = 5 },
             -- { name = 'neorg' },
-            { name = 'buffer', max_item_count = 5 },
             -- { name = 'treesitter' },
             -- { name = 'calc' },
-        },
+        }, {
+            { name = 'buffer' },
+            { name = 'path' },
+        }),
+        -- sources = {
 
         sorting = {
             comparators = {
@@ -176,6 +165,7 @@ function M.config()
                 cmp.config.compare.exact,
                 cmp.config.compare.score,
                 require('cmp-under-comparator').under,
+                -- require('clangd_extensions.cmp_scores'),
                 cmp.config.compare.kind,
                 cmp.config.compare.sort_text,
                 cmp.config.compare.length,

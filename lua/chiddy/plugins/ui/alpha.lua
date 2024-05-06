@@ -1,14 +1,23 @@
 ---@class LazyPlugin
-local M = {
+local plugin = {
     'goolord/alpha-nvim',
-    -- event = 'VeryLazy',
+    event = 'VeryLazy',
 }
 
-function M.config()
-    -- require('alpha').start(true, require('chiddy.ui.themes.' .. require('chiddy.core.config').theme .. '.alpha').config)
-    -- local theme = string.format('chiddy.ui.themes.%s.alpha', require('chiddy.core.config').theme)
-    -- require('alpha').start(true, require(theme).config)
-    -- require('alpha').setup(require(theme).config)
+function plugin.config()
+    local theme = string.format('chiddy.ui.themes.%s.alpha', require('chiddy.core.config').theme)
+    require('alpha').start(true, {
+        layout = require(theme),
+        opts = {
+            margin = 5,
+            noautocmd = true,
+            autostart = false,
+            keymap = {
+                press = '<CR>',
+                queue_press = '<M-CR>',
+            },
+        },
+    })
 end
 
-return M
+return plugin

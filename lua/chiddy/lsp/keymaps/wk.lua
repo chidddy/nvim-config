@@ -8,7 +8,10 @@ return function(client, buffer)
             d = { vim.diagnostic.goto_next, 'line diagnostics' },
             D = { vim.diagnostic.goto_prev, 'line diagnostics' },
             f = {
-                vim.lsp.buf.format,
+                -- vim.lsp.buf.format,
+                function()
+                    require('conform').format({ bufnr = buffer })
+                end,
                 'format',
                 cond = cap.documentFormating,
             },
@@ -165,15 +168,15 @@ return function(client, buffer)
             vim.diagnostic.open_float,
             'open diagnostics',
         },
-        K = {
-            function()
-                -- local winid = require('ufo').peekFoldedLinesUnderCursor()
-                -- if not winid then
-                vim.lsp.buf.hover()
-                -- end
-            end,
-            'hover',
-        },
+        -- K = {
+        --     function()
+        --         -- local winid = require('ufo').peekFoldedLinesUnderCursor()
+        --         -- if not winid then
+        --         vim.lsp.buf.hover()
+        --         -- end
+        --     end,
+        --     'hover',
+        -- },
     }
     local wk = require('which-key')
     wk.register(maps, { prefix = '<leader>', buffer = buffer, noremap = true })
